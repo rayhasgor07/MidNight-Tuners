@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MidNight Tuners</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" />
+   <link rel="stylesheet" href="./style.css"/>
+</head>
+
+<body style="background-color: skyblue; font-family: sans-serif; align-items: center;">
+
+  <header style="background-color: cadetblue; padding: 15px; text-align: center; color: white;">
+    <h2>MIDSHIFT</h2>
+  </header>
+
+  <div id="container">
+    <h3 style="text-align: center; margin-bottom: 10px;">SIGN IN</h3>
+    <a id="googleBtn" 
+      style="background-color:#4285F4; color:white; padding:12px; border:none; border-radius:5px; font-size:16px;">
+      <i class="fab fa-google"></i> Sign in with Google
+  </a>
+    <a id="signOutBtn" 
+      style="display:none; background-color:#555; color:white; padding:12px; border:none; border-radius:5px; font-size:16px; margin-top:10px; text-align: center;">
+      Sign Out
+  </a>
+    <p id="status" style="text-align:center; margin-top:20px; color:darkblue;"></p>
+
+     <a id="start" href="./home.html"
+      style="text-decoration: none;display:none; background-color:cadetblue; color:white; padding:12px; border:none; border-radius:5px; font-size:16px; margin-top:10px; text-align: center;">
+      START 
+    </a>
+    </div>
+
+
+  <!-- ✅ Correct Firebase SDKs (Compat Version) -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyAcbR1LKQsd353MQQqB4CaEe17kalaunFg",
+      authDomain: "carinfo-e6a46.firebaseapp.com",
+      projectId: "carinfo-e6a46",
+      storageBucket: "carinfo-e6a46.appspot.com",
+      messagingSenderId: "631525494281",
+      appId: "1:631525494281:web:a90b16b193c7b2eb4d72d8",
+      measurementId: "G-4EL90JVDH9"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const provider = new firebase.auth.GoogleAuthProvider();
+
+    const googleBtn = document.getElementById("googleBtn");
+    const signOutBtn = document.getElementById("signOutBtn");
+    const startBtn = document.getElementById("start")
+    const statusText = document.getElementById("status");
+
+    // Google Sign-In
+    googleBtn.addEventListener("click", () => {
+      auth.signInWithPopup(provider)
+        .then((result) => {
+          const user = result.user;
+          statusText.textContent = "🚗 Welcome, " + user.displayName + "!";
+          googleBtn.style.display = "none";
+          signOutBtn.style.display = "block";
+          startBtn.style.display = "block";
+          console.log("User info:", user);
+        })
+        .catch((error) => {
+          statusText.textContent = "⚠️ " + error.message;
+          console.error(error);
+        });
+    });
+
+    // Sign Out
+    signOutBtn.addEventListener("click", () => {
+      auth.signOut().then(() => {
+        statusText.textContent = "👋 Signed out successfully!";
+        googleBtn.style.display = "block";
+        signOutBtn.style.display = "none";
+        startBtn.style.display = "none";
+      });
+    });
+
+    // Persist login
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        statusText.textContent = "✅ Signed in as " + user.displayName;
+        googleBtn.style.display = "none";
+        signOutBtn.style.display = "block";
+        startBtn.style.display = "block";
+      } else {
+        statusText.textContent = "";
+        googleBtn.style.display = "block";
+        signOutBtn.style.display = "none";
+        startBtn.style.display = "none";
+      }
+    });
+  </script>
+
+</body>
+</html>
