@@ -107,6 +107,10 @@ footer{
 
 .photo{
   animation: glow 2s infinite alternate;
+  align-self: center;
+  align-items: center;
+  width: 250px; 
+  height:150px;
 }
 
 @keyframes glow {
