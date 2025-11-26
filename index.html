@@ -7,28 +7,27 @@
    <link rel="stylesheet" href="./style.css"/>
 </head>
 
-<body style="background-color: skyblue; font-family: sans-serif; align-items: center;">
+<body style="font-family: 'Poppins', sans-serif; background: radial-gradient(circle at top, #0f2027, #203a43, #2c5364);
+color: #fff; height: 100vh; display: flex; flex-direction: column; align-items: center;justify-content: center;overflow: hidden;">
 
-  <header style="background-color: cadetblue; padding: 15px; text-align: center; color: white;">
-    <h2>MidNight Tuners</h2>
+  <header style="position: absolute; top: 20px; text-align: center; display: flex; justify-content: center; align-items: center; width: 100%;">
+    <h1>MidNight Tuners</h1>
   </header>
 
   <div id="container">
-    <h3 style="text-align: center; margin-bottom: 10px;">SIGN IN</h3>
+    <h3 style="margin-bottom: 25px;font-weight: 600;color: #00ffff;letter-spacing: 1px;">WELCOME BACK</h3>
     <a id="googleBtn" 
-      style="background-color:#4285F4; color:white; padding:12px; border:none; border-radius:5px; font-size:16px;">
-      <i class="fab fa-google"></i> Sign in with Google
-  </a>
-    <a id="signOutBtn" 
-      style="display:none; background-color:#555; color:white; padding:12px; border:none; border-radius:5px; font-size:16px; margin-top:10px; text-align: center;">
-      Sign Out
-  </a>
-    <p id="status" style="text-align:center; margin-top:20px; color:darkblue;"></p>
-
-     <a id="start" href="./Sections/home.html"
-      style="text-decoration: none;display:none; background-color:cadetblue; color:white; padding:12px; border:none; border-radius:5px; font-size:16px; margin-top:10px; text-align: center;">
-      START 
+      style="display: block;width: 100%;padding: 12px;margin: 10px 0;border: none;border-radius: 8px;font-size: 16px;font-weight: 600;transition: all 0.25s ease;cursor: pointer;text-decoration: none;color: white;">
+      <i class="fab fa-google"></i>Sign in with Google
     </a>
+    <a id="signOutBtn" 
+      style="display:none; background-color:#092f36; color:white; padding:12px; border:none; border-radius:5px; font-size:16px; margin-top:10px; text-align: center;">Sign Out
+    </a>
+     <a id="start" href="./Sections/home.html"
+      style="text-decoration: none;display:none; background-color:cadetblue; color:white; padding:12px; border:none; border-radius:5px; font-size:16px; margin-top:10px; text-align: center;">🚗 ENTER GARAGE 
+    </a>
+
+     <p id="status" style="text-align:center; margin-top:20px; color:darkblue;"></p>
     </div>
 
 
@@ -46,7 +45,6 @@
       appId: "1:631525494281:web:a90b16b193c7b2eb4d72d8",
       measurementId: "G-4EL90JVDH9"
     };
-
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();

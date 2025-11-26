@@ -4,24 +4,44 @@
     padding:0;
 }
 
-#container{
-  background: rgba(38, 223, 223, 0.2);
-      backdrop-filter: blur(10px);
-      padding: 35px;
+ #container {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 16px;
-      margin-top: 80px;
+      padding: 40px;
+      width: 320px;
       text-align: center;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      animation: fadeIn 1.2s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+ #navigation a {
+      background: rgba(0, 139, 139);
+      border-radius: 5px;
       color: white;
-      animation: fadeIn 1s ease-in-out;
-      align-self: center;
-      justify-content: center;
-      align-items: center;
-}
+      font-size: 12px;
+      padding:5px;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 5px rgba(0,255,255,0.3);
+    }
+
+    #navigation a:hover {
+      transform: scale(1.2);
+      box-shadow: 0 0 20px cyan;
+      color: #00ffff;
+    }
+
+
 
  body { 
     font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; 
-    background:#f5f7fb; margin:0; 
+     background: radial-gradient(circle at top, #0f2027, #203a43, #2c5364); margin:0; 
 }
 
 header { 
@@ -30,8 +50,57 @@ header {
     padding:16px; 
     display:flex; 
     align-items:center; 
+    text-align: center;
     
 }
+
+
+ header h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.2rem;
+      letter-spacing: 3px;
+      color: #00ffff;
+      text-shadow: 0 0 10px #00ffff;
+      align-self: center;
+      animation: glowPulse 2s infinite alternate;
+    }
+
+    @keyframes glowPulse {
+      from { text-shadow: 0 0 5px #00ffff; }
+      to { text-shadow: 0 0 25px #00ffff; }
+    }
+
+    #googleBtn {
+      background: linear-gradient(90deg, #4285F4, #34A853, #FBBC05, #EA4335);
+      background-size: 300% 100%;
+      animation: gradientMove 4s linear infinite;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    #signOutBtn {
+      background-color: #444;
+      display: none;
+    }
+
+    #start {
+      background-color: #00bfa5;
+      display: none;
+    }
+
+    #start:hover { background-color: #1de9b6; }
+    #googleBtn:hover { transform: scale(1.05); }
+    #signOutBtn:hover { background-color: #555; }
+
+    #status {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #a7ffeb;
+    }
+
 
 .wrap { 
     max-width: 760px; 
@@ -39,7 +108,9 @@ header {
     padding: 0 16px;    
 }
 
-.card {background:#fff; border-radius:14px; box-shadow:0 8px 24px rgba(0,0,0,.08); padding:16px; margin-bottom:16px; }
+.card {background:rgb(255, 255, 255); border-radius:14px; box-shadow:0 8px 24px rgba(0,0,0,.08); padding:16px; margin-bottom:16px; background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.2);
+  backdrop-filter: blur(12px);}
 
 .row { display:flex; gap:12px; flex-wrap:wrap; }
 
@@ -113,3 +184,40 @@ footer{
   from { filter: drop-shadow(0 0 1px red); }
   to { filter: drop-shadow(0 0 15px red); }
 }
+
+a, .btn {
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(0,255,255,0.3);
+}
+a:hover, .btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #00ffff;
+}
+
+#container {
+  box-shadow: 0 0 25px rgba(0,255,255,0.4), inset 0 0 15px rgba(0,255,255,0.2);
+}
+
+#sub {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.2);
+  backdrop-filter: blur(12px);
+}
+
+#composer{
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.2);
+  backdrop-filter: blur(12px);
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(0,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,255,255,0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
+

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MidNight Tuners</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" />
+  <link rel="stylesheet" href="../style.css"/>
+</head>
+<body>
+    <div id="title">
+    <b><text>FEED</text></b>
+  </div>
+  <header>
+    <div id="navigation">
+      <a href="./home.html"><i class="fa-solid fa-house"></i></a>
+      <a href="./feed.html"><i class="fa-solid fa-plus"></i></a>
+      <a href="./learn.html"><i class="fa-solid fa-graduation-cap"></i></a>
+      <a href="./mod.html"><i class="fa-solid fa-wrench"></i></a>
+      <a href="./value.html"><i class="fa-solid fa-sack-dollar"></i></a>
+    </div>
+  </header>
+   <div class="right">
+      <span id="who" class="hint"></span>
+      <button id="signIn" class="btn"><i class="fab fa-google"></i> Sign in</button>
+      <button id="signOut" class="btn gray hide">Sign out</button>
+    </div>
+
+  <div class="wrap">
+    <!-- Composer -->
+    <div id="composer" class="card hide">
+      <h3 style="margin:6px 0 12px">Share something</h3>
+      <textarea id="postText" placeholder="Write about your mod, event, or car update..."></textarea>
+      <div class="row" style="align-items:center; margin-top:10px">
+        <h5>UNDER DEVELOPMENT</h5>
+        <input id="file" type="file" accept="image/*"/>
+        <span id="fileName" class="hint"></span>
+      </div>
+      <div class="row" style="margin-top:10px">
+        <button id="publish" class="btn">Post</button>
+        <span id="status" class="hint"></span>
+      </div>
+    </div>
+
+    <!-- Feed -->
+    <div class="card">
+      <h3 style="margin:6px 0 12px">Latest posts</h3>
+      <div id="feed"></div>
+    </div>
+  </div>
+<footer>© 2025 Rayyan Hasan Goraya. All rights reserved.</footer>
+
+  <!-- Firebase compat SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-database-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-storage-compat.js"></script>
+
+  <script>
+    // 🔧 1) USE YOUR EXISTING CONFIG (same one you used for auth)
+    const firebaseConfig = {
+      apiKey: "AIzaSyAcbR1LKQsd353MQQqB4CaEe17kalaunFg",
+      authDomain: "carinfo-e6a46.firebaseapp.com",
+      projectId: "carinfo-e6a46",
+      storageBucket: "carinfo-e6a46.appspot.com",
+      messagingSenderId: "631525494281",
+      appId: "1:631525494281:web:a90b16b193c7b2eb4d72d8",
+      measurementId: "G-4EL90JVDH9",
+      databaseURL: "https://carinfo-e6a46-default-rtdb.firebaseio.com" // 👈 Add your RTDB URL
+    };
+
+    // ✅ 2) Init Firebase
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.database();
+    const storage = firebase.storage();
+
+    // UI refs
+    const signInBtn = document.getElementById('signIn');
+    const signOutBtn = document.getElementById('signOut');
+    const who = document.getElementById('who');
+    const composer = document.getElementById('composer');
+    const postText = document.getElementById('postText');
+    const fileInput = document.getElementById('file');
+    const fileName = document.getElementById('fileName');
+    const publishBtn = document.getElementById('publish');
+    const status = document.getElementById('status');
+    const feed = document.getElementById('feed');
+
+    // Auth
+    const provider = new firebase.auth.GoogleAuthProvider();
+    provider.setCustomParameters({ prompt: 'select_account' });
+
+    signInBtn.onclick = () => auth.signInWithPopup(provider).catch(e => alert(e.message));
+    signOutBtn.onclick = () => auth.signOut();
+
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        who.textContent = `Signed in as ${user.displayName || user.email}`;
+        signInBtn.classList.add('hide');
+        signOutBtn.classList.remove('hide');
+        composer.classList.remove('hide');
+      } else {
+        who.textContent = '';
+        signInBtn.classList.remove('hide');
+        signOutBtn.classList.add('hide');
+        composer.classList.add('hide');
+      }
+    });
+
+    fileInput.onchange = () => {
+      fileName.textContent = fileInput.files[0]?.name || '';
+    };
+
+    // 🔥 3) Publish a post (upload image → write post)
+    publishBtn.onclick = async () => {
+      status.textContent = '';
+      publishBtn.disabled = true;
+
+      try {
+        const user = auth.currentUser;
+        if (!user) throw new Error('You must be signed in to post.');
+
+        const text = (postText.value || '').trim();
+        const file = fileInput.files[0] || null;
+
+        if (!text && !file) throw new Error('Write something or pick an image.');
+
+        // Upload image if present
+        let imageUrl = '';
+        if (file) {
+          const safeName = file.name.replace(/[^\w.\-]/g, '_');
+          const ts = Date.now();
+          const path = `posts/${user.uid}/${ts}_${safeName}`;
+          const snap = await storage.ref(path).put(file);
+          imageUrl = await snap.ref.getDownloadURL();
+        }
+
+        // Build post object
+        const post = {
+          uid: user.uid,
+          name: user.displayName || user.email,
+          photoURL: user.photoURL || '',
+          text: text,
+          imageUrl: imageUrl,
+          createdAt: firebase.database.ServerValue.TIMESTAMP
+        };
+
+        // Push to Realtime Database
+        await db.ref('posts').push(post);
+
+        // Reset UI
+        postText.value = '';
+        fileInput.value = '';
+        fileName.textContent = '';
+        status.textContent = '✅ Posted!';
+        setTimeout(()=> status.textContent = '', 1500);
+      } catch (e) {
+        status.textContent = '⚠️ ' + e.message;
+      } finally {
+        publishBtn.disabled = false;
+      }
+    };
+
+    // 👀 4) Live feed — newest first
+    function renderPost(key, data) {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.id = `post-${key}`;
+
+      const when = data.createdAt ? new Date(data.createdAt).toLocaleString() : '';
+      const imgHtml = data.imageUrl ? `<img class="img" src="${data.imageUrl}" alt="">` : '';
+
+      card.innerHTML = `
+        <div class="post">
+          ${data.photoURL ? `<img class="avatar" src="${data.photoURL}" alt="">` : `<div class="avatar"></div>`}
+          <div>
+            <div style="font-weight:600">${data.name || 'Anonymous'}</div>
+            <div class="meta">${when}</div>
+            <div style="margin-top:8px; white-space:pre-wrap">${(data.text || '').replace(/</g,'&lt;')}</div>
+            ${imgHtml}
+          </div>
+        </div>
+      `;
+      return card;
+    }
+
+    // Listen to last 100 posts, order by createdAt
+    const postsQuery = db.ref('posts').orderByChild('createdAt').limitToLast(100);
+
+    // Initial & subsequent updates
+    postsQuery.on('child_added', snap => {
+      const key = snap.key, data = snap.val();
+      const node = renderPost(key, data);
+      // Insert newest on top
+      feed.insertBefore(node, feed.firstChild);
+    });
+
+    postsQuery.on('child_changed', snap => {
+      const key = snap.key, data = snap.val();
+      const old = document.getElementById(`post-${key}`);
+      if (old) old.replaceWith(renderPost(key, data));
+    });
+
+    postsQuery.on('child_removed', snap => {
+      const key = snap.key;
+      const old = document.getElementById(`post-${key}`);
+      if (old) old.remove();
+    });
+  </script>
+</body>
+</html>
