@@ -134,8 +134,8 @@
       let value = baseValue - (miles / 10000) * (baseValue * 0.02);
       value = Math.max(value, 2000);
 
-      result.textContent = `Estimated Value: $${value.toLocaleString(undefined, { maximumFractionDigits: 0 })}`;
-      result.style.color = "darkgreen";
+      result.textContent = `Estimated Value: $${value.toLocaleString(undefined, { maximumFractionDigits: 0 })} USD`;
+      result.style.color = "darkred";
 
       // Graph: show all production years for that car/gen
       const years = carData[brand][car].productionYears;
@@ -188,7 +188,7 @@
         grid: { color: 'rgba(255,255,255,0.1)' }
       },
       y: {
-        title: { display: true, text: 'Value ($)', color: '#ffffff' },
+        title: { display: true, text: 'Value ($ USD)', color: '#ffffff' },
         ticks: { color: '#ffffff' },
         grid: { color: 'rgba(255,255,255,0.1)' }
       }
