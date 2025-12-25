@@ -48,9 +48,10 @@
 
       <button id="calculate" class="btn" style="margin-top:10px;width:100%;">Calculate Value</button>
 
+      <img id="carImage" style="width:50%;margin-top:20px;border-radius:10px;display:none;align-self: center;justify-content: center; justify-self: center;">
+
       <h3 id="result" style="text-align:center;margin-top:20px;color:rgb(57, 69, 161);"></h3>
 
-      <!-- Graph -->
       <canvas id="valueChart" style="margin-top:20px;max-height:350px;"></canvas>
     </div>
   </div>
@@ -112,6 +113,15 @@
           yearSelect.appendChild(opt);
         });
       }
+const img = document.getElementById('carImage');
+const carInfo = carData[brand]?.[car];
+
+if (carInfo && carInfo.image) {
+  img.src = carInfo.image;
+  img.style.display = "block";
+} else {
+  img.style.display = "none";
+}
     });
 
     // Calculate value

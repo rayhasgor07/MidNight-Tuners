@@ -1,14 +1,15 @@
 {
     "Acura":{
       "adx-gen1":{
-        "displayName": "Acura ADX Gen 1",
+        "displayName": "Acura ADX (Gen 1)",
             "productionYears": [2025],
             "values": {
                 "2025": 45000
-        }
+        },
+        "image": "https://autoimage.capitalone.com/cms/Auto/assets/images/3740-hero-2025-acura-adx-review.jpg"
       },
         "cdx-gen1": {
-        "displayName": "Acura CDX Gen 1",
+        "displayName": "Acura CDX (Gen 1)",
         "productionYears": [2016, 2017, 2018, 2019, 2020, 2021, 2022],
         "values": {
           "2016": 21000,  
@@ -18,10 +19,11 @@
           "2020": 28000,   
           "2021": 30000,   
           "2022": 32500    
-        }
+        },
+        "image":"https://avatars.mds.yandex.net/get-verba/1604130/2a000001914bf3c5e651cb106cb955965a32/cattouchret"
       },
       "cl-gen1": {
-      "displayName": "Acura CL Gen 1",
+      "displayName": "Acura CL (Gen 1)",
       "productionYears": [1997, 1998, 1999, 2000, 2001, 2002, 2003],
       "values": {
         "1997": 3500,   
@@ -31,10 +33,11 @@
         "2001": 4800,
         "2002": 5200,
         "2003": 5500  
-      }
+      },
+      "image": "https://media.carsandbids.com/cdn-cgi/image/width=2080,quality=70/d9b636c2ec84ddc3bc7f2eb32861b39bdd5f9683/photos/KZ5PMp1R-CYC1b_LTNC-(edit).jpg?t=171484856440"
     },
       "csx-gen1": {
-      "displayName": "Acura CSX Gen 1",
+      "displayName": "Acura CSX (Gen 1)",
       "productionYears": [2006, 2007, 2008, 2009, 2010, 2011],
       "values": {
         "2006": 3500,   
@@ -43,20 +46,22 @@
         "2009": 5000,
         "2010": 5500,
         "2011": 6000  
-      }
+      },
+      "image": "https://s1.cdn.autoevolution.com/images/gallery/acura-csx-2005-7076_2.jpg"
     },
        "el-gen1": {
-      "displayName": "Acura EL Gen 1",
+      "displayName": "Acura EL (Gen 1)",
       "productionYears": [1997, 1998, 1999, 2000],
       "values": {
         "1997": 2500,   
         "1998": 2800,
         "1999": 3200,
         "2000": 3500   
-      }
+      },
+      "image":"https://picolio.auto123.com/98photo/acura/16el4dr-base.jpg"
     },
       "el-gen2": {
-      "displayName": "Acura EL Gen 2",
+      "displayName": "Acura EL (Gen 2)",
       "productionYears": [2001, 2002, 2003, 2004, 2005],
       "values": {
         "2001": 4000,
@@ -64,10 +69,11 @@
         "2003": 4500,
         "2004": 4800,
         "2005": 5000   
-      }
+      },
+      "image":"https://www.supercars.net/blog/wp-content/uploads/2020/10/carpixel.net-2002-acura-tl-type-s-62579-hd.jpg"
     },
       "ilx-gen1": {
-      "displayName": "Acura ILX Gen 1",
+      "displayName": "Acura ILX (Gen 1)",
       "productionYears": [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022],
       "values": {
         "2013": 7500,   
@@ -80,30 +86,33 @@
         "2020": 14500,
         "2021": 15500,
         "2022": 16500    
-      }
+      },
+      "image":"https://www.motortrend.com/uploads/sites/5/2021/07/2022-Acura-ILX-014-front-quarter-view.jpg"
     },
     "integra-gen1": {
-      "displayName": "Acura Integra Gen 1",
+      "displayName": "Acura Integra (Gen 1)",
       "productionYears": [1986, 1987, 1988, 1989],
       "values": {
         "1986": 4500,
         "1987": 4800,
         "1988": 5000,
         "1989": 5200
-      }
+      },
+      "image":"https://cdn.dealeraccelerate.com/raleigh/11/2571/71325/1920x1440/1988-acura-integra"
     },
     "integra-gen2": {
-      "displayName": "Acura Integra Gen 2",
+      "displayName": "Acura Integra (Gen 2)",
       "productionYears": [1990, 1991, 1992, 1993],
       "values": {
         "1990": 5500,
         "1991": 6000,
         "1992": 6500,
         "1993": 7000
-      }
+      },
+      "image":"https://bringatrailer.com/wp-content/uploads/2024/06/1991_acura_integra_img_5899-21444.jpeg"
     },
     "integra-gen3": {
-      "displayName": "Acura Integra Gen 3",
+      "displayName": "Acura Integra (Gen 3)",
       "productionYears": [1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001],
       "values": {
         "1994": 7500,
@@ -114,10 +123,11 @@
         "1999": 12500,
         "2000": 14000,
         "2001": 16000
-      }
+      },
+      "image":"https://www.autoblog.com/.image/w_3840,q_auto:good,c_limit/MjA5MTIyMTg3OTYyODg1NzQ0/1997%2520Acura%2520Integra%2520GS-R%2520Sedan.jpg"
     },
     "integra-gen4": {
-      "displayName": "Acura Integra Gen 4",
+      "displayName": "Acura Integra (Gen 4)",
       "productionYears": [2002, 2003, 2004, 2005, 2006],
       "values": {
         "2002": 6500,
@@ -125,17 +135,19 @@
         "2004": 7500,
         "2005": 8000,
         "2006": 8500
-      }
+      },
+      "image": "https://www.hongliyangzhi.com/manufacturers/honda/honda-integra/honda-integra-2004/honda-integra-2004-1.jpg"
     },
     "integra-gen5": {
-      "displayName": "Acura Integra Gen 5",
+      "displayName": "Acura Integra (Gen 5)",
       "productionYears": [2022, 2023, 2024, 2025],
       "values": {
         "2022": 25000,
         "2023": 27000,
         "2024": 29000,
         "2025": 31000
-      }
+      },
+      "image":"https://www.autoaubaine.com/actualite-automobile/images-automobiles/55375.jpg"
     },
       "legend-gen1": {
       "displayName": "Acura Legend Gen 1",
@@ -146,7 +158,8 @@
         "1988": 4200,
         "1989": 4500,
         "1990": 5000
-      }
+      },
+      "image": "https://bringatrailer.com/wp-content/uploads/2024/03/1987_acura_legend_1987_acura_legend_3150acfc-b7fa-4860-b373-1912f8de3a45-p9wWGH-35775-35776-scaled.jpg"
     },
       "legend-gen2": {
       "displayName": "Acura Legend Gen 2",
@@ -157,7 +170,8 @@
         "1993": 6500,
         "1994": 7000,
         "1995": 7500
-      }
+      },
+      "image": "https://bringatrailer.com/wp-content/uploads/2018/08/1993_acura_legend_1535734669f98764daIMG_20180831_073500.jpg?fit=940%2C705"
     },
 "mdx-gen1": {
   "displayName": "Acura MDX Gen 1",
@@ -169,7 +183,8 @@
     "2004": 5000,
     "2005": 5500,
     "2006": 6000
-  }
+  },
+  "image": "https://file.kelleybluebookimages.com/kbb/base/house/2002/2002-Acura-MDX-FrontSide_ATMDX021_505x375.jpg?interpolation=high-quality&downsize=600:*"
 },
 "mdx-gen2": {
   "displayName": "Acura MDX Gen 2",
@@ -182,7 +197,8 @@
     "2011": 8500,
     "2012": 9000,
     "2013": 9500
-  }
+  },
+  "image": "https://www.conceptcarz.com/images/Acura/Acura-MDX-2009_image-023-1280.jpg"
 },
 "mdx-gen3": {
   "displayName": "Acura MDX Gen 3",
@@ -196,7 +212,8 @@
     "2019": 15500,
     "2020": 16500,
     "2021": 17500
-  }
+  },
+  "image":"https://static.cargurus.com/images/site/2014/07/10/15/20/2015_acura_mdx-pic-1516088573443094179-1600x1200.jpeg"
 },
 "mdx-gen4": {
   "displayName": "Acura MDX Gen 4",
@@ -206,7 +223,8 @@
     "2023": 40000,
     "2024": 42000,
     "2025": 44000
-  }
+  },
+  "image": "https://www.usnews.com/object/image/0000018f-731b-d911-af9f-77df60950001/01-2024-acura-mdx-angular-front-jmv.JPG?update-time=1718379941907&size=responsiveGallery"
 },
      "nsx-gen1": {
   "displayName": "Acura NSX Gen 1",
@@ -224,7 +242,8 @@
     "2000": 120000,
     "2001": 130000,
     "2002": 140000   
-  }
+  },
+  "image":"https://images.classic.com/vehicles/d5ce7441d289fddb5b21aa0eaad38830e2847858.jpg?format=auto&fit=crop&ar=16:9&w=1920"
 },
 "nsx-gen2": {
   "displayName": "Acura NSX Gen 2",
@@ -237,7 +256,8 @@
     "2020": 125000,
     "2021": 130000,
     "2022": 135000    
-  }
+  },
+  "image": "https://media.ed.edmunds-media.com/acura/nsx/2018/oem/2018_acura_nsx_coupe_base_fq_oem_1_1600.jpg"
 },
    "rdx-gen1": {
   "displayName": "Acura RDX Gen 1",
@@ -249,7 +269,8 @@
     "2010": 6000,
     "2011": 6500,
     "2012": 7000
-  }
+  },
+  "image":"https://i.gaw.to/vehicles/photos/00/93/009393_2009_Acura_RDX.jpg?1024x640"
 },
 "rdx-gen2": {
   "displayName": "Acura RDX Gen 2",
@@ -261,7 +282,8 @@
     "2016": 11500,
     "2017": 12500,
     "2018": 13500
-  }
+  },
+  "image":"https://images.hgmsites.net/hug/2015-acura-rdx_100466296_h.jpg"
 },
 "rdx-gen3": {
   "displayName": "Acura RDX Gen 3",
@@ -275,7 +297,8 @@
     "2023": 34000,
     "2024": 36000,
     "2025": 38000
-  }
+  },
+  "image":"https://i.gaw.to/vehicles/photos/40/22/402254-2021-acura-rdx.jpg"
 },
       "rl-gen1": {
   "displayName": "Acura RL Gen 1",
@@ -290,7 +313,8 @@
     "2002": 5200,
     "2003": 5400,
     "2004": 5600
-  }
+  },
+  "image": "https://www.edmunds.com/assets/m/acura/rl/2000/oem/2000_acura_rl_sedan_35_fq_oem_1_500.jpg"
 },
 "rl-gen2": {
   "displayName": "Acura RL Gen 2",
@@ -304,7 +328,8 @@
     "2010": 8500,
     "2011": 9000,
     "2012": 9500
-  }
+  },
+  "image":"https://i.gaw.to/vehicles/photos/00/03/000349_2008_Acura_RL.jpg?1024x640"
 },
      "rlx-gen1": {
   "displayName": "Acura RLX Gen 1",
@@ -317,7 +342,8 @@
     "2018": 18000,
     "2019": 19500,
     "2020": 21000
-  }
+  },
+  "image":"https://www.motortrend.com/uploads/sites/5/2020/04/2020-acura-rlx-04.jpg"
 },
      "slx-gen1": {
   "displayName": "Acura SLX Gen 1",
@@ -327,7 +353,8 @@
     "1997": 3800,
     "1998": 4200,
     "1999": 4500
-  }
+  },
+  "image":"https://www.goodcarbadcar.net/wp-content/uploads/2023/05/Acura-SLX.jpg"
 },
      "tl-gen1": {
   "displayName": "Acura TL Gen 1",
@@ -336,7 +363,8 @@
     "1996": 3500,
     "1997": 3800,
     "1998": 4200
-  }
+  },
+  "image":"https://images.hgmsites.net/med/1997-acura-tl_100026543_m.jpg"
 },
 "tl-gen2": {
   "displayName": "Acura TL Gen 2",
@@ -347,7 +375,8 @@
     "2001": 5600,
     "2002": 6000,
     "2003": 6500
-  }
+  },
+  "image":"https://momentcar.com/images/acura-tl-2001-1.jpg"
 },
 "tl-gen3": {
   "displayName": "Acura TL Gen 3",
@@ -358,7 +387,8 @@
     "2006": 8000,
     "2007": 8500,
     "2008": 9000
-  }
+  },
+  "image":"https://worldautosales.com/wp-content/uploads/2017/08/used-acura-tl-for-sale-80-of-116-1199x799.jpg"
 },
 "tl-gen4": {
   "displayName": "Acura TL Gen 4",
@@ -370,7 +400,8 @@
     "2012": 12000,
     "2013": 13000,
     "2014": 14000
-  }
+  },
+  "image":"https://4.bp.blogspot.com/-Aaomkf3ueGU/Vryt84sIrVI/AAAAAAAADxQ/H47K228ucpY/s1600/2011-acura-tl-2.jpg"
 },
      "tlx-gen1": {
   "displayName": "Acura TLX Gen 1",
@@ -383,7 +414,8 @@
     "2018": 18000,
     "2019": 19500,
     "2020": 21000
-  }
+  },
+  "image":"https://images.coches.com/_vn_/acura/TLX-A-Spec-2017/acura_tlx-a-spec-2017_r6.jpg"
 },
 "tlx-gen2": {
   "displayName": "Acura TLX Gen 2",
@@ -395,7 +427,8 @@
     "2023": 29000,
     "2024": 31000,
     "2025": 33000
-  }
+  },
+  "image":"https://media.ed.edmunds-media.com/acura/tlx/2023/oem/2023_acura_tlx_sedan_type-s_fq_oem_1_1280.jpg"
 },
       "tsx-gen1": {
   "displayName": "Acura TSX Gen 1",
@@ -406,7 +439,8 @@
     "2006": 5500,
     "2007": 6000,
     "2008": 6500
-  }
+  },
+  "image":"https://media.ed.edmunds-media.com/acura/tsx/2006/oem/2006_acura_tsx_sedan_base_fq_oem_1_300.jpg"
 },
 "tsx-gen2": {
   "displayName": "Acura TSX Gen 2",
@@ -418,7 +452,8 @@
     "2012": 8500,
     "2013": 9000,
     "2014": 9500
-  }
+  },
+  "image":"https://s1.cdn.autoevolution.com/images/gallery/ACURA-TSX-4018_44.jpg"
 },
       "vigor-gen1": {
   "displayName": "Acura Vigor Gen 1",
@@ -427,7 +462,8 @@
     "1992": 3000,
     "1993": 3200,
     "1994": 3500
-  }
+  },
+  "image":"https://wallpapers.com/images/hd/acura-vigor-1920-x-1200-wallpaper-zs36jwocy3t2qoz5.jpg"
 },
       "zdx-gen1": {
   "displayName": "Acura ZDX Gen 1",
@@ -438,14 +474,16 @@
     "2012": 11000,
     "2013": 12000,
     "2014": 13000
-  }
+  },
+  "image":"https://www.thesupercars.org/wp-content/uploads/2012/07/2012-Acura-ZDX-blocking-the-road.jpg"
 },
 "zdx-gen2": {
   "displayName": "Acura ZDX Gen 2",
   "productionYears": [2024],
   "values": {
     "2024": 62000
-  }
+  },
+  "image":"https://www.thedrive.com/wp-content/uploads/2024/04/29/2024_Acura_ZDX_-Hero-scaled.jpeg"
 }
     },
     "Alfa Romeo":{
@@ -528,7 +566,7 @@
       }
     },
      "giulietta-2010-gen1": {
-      "displayName": "Alfa Romeo Giulietta (Type 940) Gen 1",
+      "displayName": "Alfa Romeo Giulietta Gen 1",
       "productionYears": [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020],
       "values": {
         "2010": 9000, 
@@ -32084,6 +32122,26 @@
     "2013": 6600,
     "2014": 6800,
     "2015": 7000
+  }
+},
+"suzuki-khyber-gen1": {
+  "displayName": "Suzuki Khyber (Gen 1)",
+  "productionYears": [
+    1989,1990,1991,1992,1993,
+    1994,1995,1996,1997,1998,1999
+  ],
+  "values": {
+    "1989": 1500,
+    "1990": 1600,
+    "1991": 1700,
+    "1992": 1800,
+    "1993": 1900,
+    "1994": 2000,
+    "1995": 2100,
+    "1996": 2200,
+    "1997": 2300,
+    "1998": 2400,
+    "1999": 2500
   }
 },
 "suzuki-jimny-gen1": {
