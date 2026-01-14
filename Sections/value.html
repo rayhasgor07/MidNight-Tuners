@@ -16,7 +16,6 @@
       <a href="./home.html"><i class="fa-solid fa-house"></i></a>
       <a href="./feed.html"><i class="fa-solid fa-plus"></i></a>
       <a href="./learn.html"><i class="fa-solid fa-graduation-cap"></i></a>
-      <a href="./mod.html"><i class="fa-solid fa-wrench"></i></a>
       <a href="./value.html"><i class="fa-solid fa-sack-dollar"></i></a>
     </div>
   </header>
@@ -56,7 +55,7 @@
     </div>
   </div>
 
-  <footer>© 2025 Rayyan Hasan Goraya. All rights reserved.</footer>
+  <footer>© 2026 Rayyan Hasan Goraya. All rights reserved.</footer>
 
   <script>
     let carData = {};
@@ -138,7 +137,7 @@ if (carInfo && carInfo.image) {
         return;
       }
 
-      const baseValue = carData[brand][car].values[year];
+      const baseValue = carData[brand][car].value[year];
 
       // Mileage deduction formula (2% per 10k km)
       let value = baseValue - (miles / 10000) * (baseValue * 0.02);
@@ -150,7 +149,7 @@ if (carInfo && carInfo.image) {
       // Graph: show all production years for that car/gen
       const years = carData[brand][car].productionYears;
       const values = years.map(y => {
-        let v = carData[brand][car].values[y];
+        let v = carData[brand][car].value[y];
         v -= (miles / 10000) * (v * 0.02);
         return Math.max(v, 2000);
       });
