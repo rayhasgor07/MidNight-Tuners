@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Performance Garage</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" />
+  <link rel="stylesheet" href="../style.css"/>
+</head>
+
+<body>
+
+<div id="title">
+  <b><text>PERFORMANCE</text></b>
+</div>
+
+<header>
+  <div id="navigation">
+    <a href="./home.html"><i class="fa-solid fa-house"></i></a>
+    <a href="./feed.html"><i class="fa-solid fa-plus"></i></a>
+    <a href="./learn.html"><i class="fa-solid fa-graduation-cap"></i></a>
+    <a href="./value.html"><i class="fa-solid fa-sack-dollar"></i></a>
+    <a href="./Performance.html"><i class="fa-solid fa-car"></i></a>
+  </div>
+</header>
+
+<div style="padding: 20px; max-width: 1000px; margin: auto; display: flex; flex-direction: column; gap: 24px;">
+
+  <!-- CORE PERFORMANCE -->
+  <section class="card">
+    <h2>Core Performance</h2>
+    <div class="input-box">
+      <label>Horsepower (HP)</label>
+      <input id="core-hp" type="number" placeholder="e.g. 280">
+    </div>
+    <div class="input-box">
+      <label>Weight (kg)</label>
+      <input id="core-weight" type="number" placeholder="e.g. 1350">
+    </div>
+    <button class="main-btn" onclick="calcCore()">Calculate</button>
+    <div id="core-results" style="margin-top: 10px; white-space: pre-line;"></div>
+  </section>
+
+  <!-- WEIGHT REDUCTION -->
+  <section class="card">
+    <h2>Weight Reduction Effect</h2>
+    <div class="input-box">
+      <label>Current Weight (kg)</label>
+      <input id="wr-weight" type="number" placeholder="e.g. 1350">
+    </div>
+    <div class="input-box">
+      <label>Weight Removed (kg)</label>
+      <input id="wr-removed" type="number" placeholder="e.g. 50">
+    </div>
+    <div class="input-box">
+      <label>Horsepower (HP)</label>
+      <input id="wr-hp" type="number" placeholder="e.g. 280">
+    </div>
+    <button class="main-btn" onclick="calcWeightReduction()">Calculate</button>
+    <div id="wr-results" style="margin-top: 10px; white-space: pre-line;"></div>
+  </section>
+
+  <!-- BOOST TO HP -->
+  <section class="card">
+    <h2>Boost → Horsepower</h2>
+    <div class="input-box">
+      <label>Base Horsepower (HP, NA or low boost)</label>
+      <input id="boost-base" type="number" placeholder="e.g. 200">
+    </div>
+    <div class="input-box">
+      <label>Boost Pressure (PSI)</label>
+      <input id="boost-psi" type="number" placeholder="e.g. 10">
+    </div>
+    <button class="main-btn" onclick="calcBoost()">Calculate</button>
+    <div id="boost-results" style="margin-top: 10px; white-space: pre-line;"></div>
+  </section>
+
+  <!--G Force Calc-->
+  <section class="card">
+  <h2>G‑Force Calculator</h2>
+
+  <div class="input-box">
+    <label>0–60 Time (seconds)</label>
+    <input id="g-060" type="number" step="0.01" placeholder="e.g. 4.5">
+  </div>
+
+  <div class="input-box">
+    <label>Tire Grip (μ)</label>
+    <input id="g-mu" type="number" step="0.01" placeholder="e.g. 1.05">
+  </div>
+
+  <button class="main-btn" onclick="calcGForce()">Calculate</button>
+
+  <div id="g-results" style="margin-top: 10px; white-space: pre-line;"></div>
+</section>
+
+  <!-- DRIVETRAIN LOSS -->
+  <section class="card">
+    <h2>Drivetrain Loss</h2>
+    <div class="input-box">
+      <label>Crank Horsepower (HP)</label>
+      <input id="dt-crank" type="number" placeholder="e.g. 300">
+    </div>
+    <div class="input-box">
+      <label>Wheel Horsepower (HP)</label>
+      <input id="dt-wheel" type="number" placeholder="optional">
+    </div>
+    <div class="input-box">
+      <label>Drivetrain Type</label>
+      <select id="dt-type">
+        <option value="0.10">FWD (~10% loss)</option>
+        <option value="0.15">RWD (~15% loss)</option>
+        <option value="0.20">AWD (~20% loss)</option>
+      </select>
+    </div>
+    <button class="main-btn" onclick="calcDrivetrainFromCrank()">Crank → Wheel</button>
+    <button class="main-btn" style="margin-top: 6px;" onclick="calcDrivetrainFromWheel()">Wheel → Crank</button>
+    <div id="dt-results" style="margin-top: 10px; white-space: pre-line;"></div>
+  </section>
+
+  <!-- TIRE SIZE + SPEEDO -->
+  <section class="card">
+    <h2>Tire Size & Speedometer</h2>
+    <div class="input-box">
+      <label>Old Tire Diameter (inches)</label>
+      <input id="tire-old" type="number" placeholder="e.g. 25">
+    </div>
+    <div class="input-box">
+      <label>New Tire Diameter (inches)</label>
+      <input id="tire-new" type="number" placeholder="e.g. 26">
+    </div>
+    <div class="input-box">
+      <label>Indicated Speed (km/h)</label>
+      <input id="tire-speed" type="number" placeholder="e.g. 100">
+    </div>
+    <button class="main-btn" onclick="calcTire()">Calculate</button>
+    <div id="tire-results" style="margin-top: 10px; white-space: pre-line;"></div>
+  </section>
+
+  <!-- GEAR SPEEDS -->
+  <section class="card">
+    <h2>Gear Speeds</h2>
+    <div class="input-box">
+      <label>Redline RPM</label>
+      <input id="gear-rpm" type="number" placeholder="e.g. 8000">
+    </div>
+    <div class="input-box">
+      <label>Tire Diameter (inches)</label>
+      <input id="gear-tire" type="number" placeholder="e.g. 25">
+    </div>
+    <div class="input-box">
+      <label>Final Drive Ratio</label>
+      <input id="gear-fd" type="number" step="0.01" placeholder="e.g. 4.06">
+    </div>
+    <div class="input-box">
+      <label>Gear Ratios (comma separated)</label>
+      <input id="gear-ratios" type="text" placeholder="e.g. 3.27, 2.10, 1.48, 1.16, 0.97, 0.77">
+    </div>
+    <button class="main-btn" onclick="calcGears()">Calculate</button>
+    <div id="gear-results" style="margin-top: 10px; white-space: pre-line;"></div>
+  </section>
+
+  <!-- FUEL RANGE -->
+  <section class="card">
+    <h2>Fuel Range & Cost</h2>
+    <div class="input-box">
+      <label>Fuel Economy (L/100km)</label>
+      <input id="fuel-l100" type="number" step="0.1" placeholder="e.g. 9.5">
+    </div>
+    <div class="input-box">
+      <label>Tank Size (L)</label>
+      <input id="fuel-tank" type="number" placeholder="e.g. 55">
+    </div>
+    <div class="input-box">
+      <label>Fuel Price ($/L)</label>
+      <input id="fuel-price" type="number" step="0.01" placeholder="e.g. 1.70">
+    </div>
+    <button class="main-btn" onclick="calcFuel()">Calculate</button>
+    <div id="fuel-results" style="margin-top: 10px; white-space: pre-line;"></div>
+  </section>
+
+  <!-- MOD STACK HP -->
+  <section class="card">
+    <h2>Mod Stack HP Estimator</h2>
+    <div class="input-box">
+      <label>Base Horsepower (HP)</label>
+      <input id="mod-base" type="number" placeholder="e.g. 200">
+    </div>
+    <div class="input-box">
+      <label>Intake Gain (HP)</label>
+      <input id="mod-intake" type="number" placeholder="e.g. 5">
+    </div>
+    <div class="input-box">
+      <label>Exhaust Gain (HP)</label>
+      <input id="mod-exhaust" type="number" placeholder="e.g. 8">
+    </div>
+    <div class="input-box">
+      <label>Tune Gain (HP)</label>
+      <input id="mod-tune" type="number" placeholder="e.g. 15">
+    </div>
+    <div class="input-box">
+      <label>Turbo/Supercharger Gain (HP)</label>
+      <input id="mod-forced" type="number" placeholder="e.g. 80">
+    </div>
+    <button class="main-btn" onclick="calcMods()">Calculate</button>
+    <div id="mod-results" style="margin-top: 10px; white-space: pre-line;"></div>
+  </section>
+
+</div>
+
+<footer>© 2026 Rayyan Hasan Goraya. All rights reserved.</footer>
+
+<script>
+// CORE PERFORMANCE
+function calcCore() {
+  const hp = Number(document.getElementById("core-hp").value);
+  const weight = Number(document.getElementById("core-weight").value);
+  if (!hp || !weight) {
+    document.getElementById("core-results").innerText = "Enter horsepower and weight.";
+    return;
+  }
+  const pwr = hp / weight;
+  const zeroToSixty = 2.8 / Math.sqrt(pwr);
+  const quarterMile = 5.825 * Math.pow(weight / hp, 1/3);
+  const trap = 234 * Math.pow(hp / weight, 1/3);
+
+  document.getElementById("core-results").innerText = `
+Power-to-weight: ${pwr.toFixed(3)} hp/kg
+0–60 mph: ${zeroToSixty.toFixed(2)} s
+Quarter mile ET: ${quarterMile.toFixed(2)} s
+Trap speed: ${trap.toFixed(1)} mph
+`;
+}
+
+// WEIGHT REDUCTION
+function calcWeightReduction() {
+  const w0 = Number(document.getElementById("wr-weight").value);
+  const wDrop = Number(document.getElementById("wr-removed").value);
+  const hp = Number(document.getElementById("wr-hp").value);
+  if (!w0 || !wDrop || !hp) {
+    document.getElementById("wr-results").innerText = "Enter weight, weight removed, and horsepower.";
+    return;
+  }
+  const w1 = w0 - wDrop;
+  if (w1 <= 0) {
+    document.getElementById("wr-results").innerText = "Weight removed is too high.";
+    return;
+  }
+
+  const pwr0 = hp / w0;
+  const pwr1 = hp / w1;
+
+  const zero0 = 2.8 / Math.sqrt(pwr0);
+  const zero1 = 2.8 / Math.sqrt(pwr1);
+
+  const q0 = 5.825 * Math.pow(w0 / hp, 1/3);
+  const q1 = 5.825 * Math.pow(w1 / hp, 1/3);
+
+  const zeroGain = zero0 - zero1;
+  const qGain = q0 - q1;
+
+  document.getElementById("wr-results").innerText = `
+Original weight: ${w0.toFixed(0)} kg
+New weight: ${w1.toFixed(0)} kg
+
+0–60 mph:
+  Before: ${zero0.toFixed(2)} s
+  After:  ${zero1.toFixed(2)} s
+  Gain:   ${zeroGain.toFixed(2)} s faster
+
+Quarter mile ET:
+  Before: ${q0.toFixed(2)} s
+  After:  ${q1.toFixed(2)} s
+  Gain:   ${qGain.toFixed(2)} s faster
+`;
+}
+
+// BOOST TO HP
+function calcBoost() {
+  const base = Number(document.getElementById("boost-base").value);
+  const psi = Number(document.getElementById("boost-psi").value);
+  if (!base || psi === 0) {
+    document.getElementById("boost-results").innerText = "Enter base HP and boost PSI.";
+    return;
+  }
+  const factor = 1 + (psi / 14.7);
+  const newHp = base * factor;
+
+  document.getElementById("boost-results").innerText = `
+Base horsepower: ${base.toFixed(0)} hp
+Boost: ${psi.toFixed(1)} psi
+
+Estimated new horsepower: ${newHp.toFixed(0)} hp
+`;
+}
+
+//G Force Calc
+function calcGForce() {
+  const t = Number(document.getElementById("g-060").value);
+  const mu = Number(document.getElementById("g-mu").value);
+
+  if (!t || !mu) {
+    document.getElementById("g-results").innerText = "Enter 0–60 time and tire grip.";
+    return;
+  }
+
+  const V = 26.82; // 60 mph in m/s
+  const g = 9.81;
+
+  const accelG = V / (t * g);
+  const brakeG = mu;
+  const cornerG = mu;
+
+  document.getElementById("g-results").innerText = `
+Acceleration G‑Force: ${accelG.toFixed(2)} g
+Braking G‑Force:      ${brakeG.toFixed(2)} g
+Cornering G‑Force:    ${cornerG.toFixed(2)} g
+`;
+}
+
+// DRIVETRAIN LOSS
+function calcDrivetrainFromCrank() {
+  const crank = Number(document.getElementById("dt-crank").value);
+  const loss = Number(document.getElementById("dt-type").value);
+  if (!crank) {
+    document.getElementById("dt-results").innerText = "Enter crank horsepower.";
+    return;
+  }
+  const wheel = crank * (1 - loss);
+  document.getElementById("dt-results").innerText = `
+Crank horsepower: ${crank.toFixed(0)} hp
+Loss: ${(loss * 100).toFixed(0)}%
+
+Estimated wheel horsepower: ${wheel.toFixed(0)} hp
+`;
+}
+
+function calcDrivetrainFromWheel() {
+  const wheel = Number(document.getElementById("dt-wheel").value);
+  const loss = Number(document.getElementById("dt-type").value);
+  if (!wheel) {
+    document.getElementById("dt-results").innerText = "Enter wheel horsepower.";
+    return;
+  }
+  const crank = wheel / (1 - loss);
+  document.getElementById("dt-results").innerText = `
+Wheel horsepower: ${wheel.toFixed(0)} hp
+Loss: ${(loss * 100).toFixed(0)}%
+
+Estimated crank horsepower: ${crank.toFixed(0)} hp
+`;
+}
+
+// TIRE SIZE + SPEEDO
+function calcTire() {
+  const oldD = Number(document.getElementById("tire-old").value);
+  const newD = Number(document.getElementById("tire-new").value);
+  const indicated = Number(document.getElementById("tire-speed").value);
+  if (!oldD || !newD || !indicated) {
+    document.getElementById("tire-results").innerText = "Enter old/new tire diameter and indicated speed.";
+    return;
+  }
+  const ratio = newD / oldD;
+  const actual = indicated * ratio;
+  const error = (actual - indicated) / indicated * 100;
+
+  document.getElementById("tire-results").innerText = `
+Old diameter: ${oldD.toFixed(2)}"
+New diameter: ${newD.toFixed(2)}"
+
+Indicated speed: ${indicated.toFixed(1)} km/h
+Actual speed:    ${actual.toFixed(1)} km/h
+
+Speedometer error: ${error.toFixed(1)}%
+`;
+}
+
+// GEAR SPEEDS
+function calcGears() {
+  const rpm = Number(document.getElementById("gear-rpm").value);
+  const tire = Number(document.getElementById("gear-tire").value);
+  const fd = Number(document.getElementById("gear-fd").value);
+  const ratiosStr = document.getElementById("gear-ratios").value;
+
+  if (!rpm || !tire || !fd || !ratiosStr.trim()) {
+    document.getElementById("gear-results").innerText = "Enter RPM, tire diameter, final drive, and gear ratios.";
+    return;
+  }
+
+  const ratios = ratiosStr.split(",").map(r => Number(r.trim())).filter(r => r > 0);
+  if (ratios.length === 0) {
+    document.getElementById("gear-results").innerText = "No valid gear ratios.";
+    return;
+  }
+
+  const tireM = tire * 0.0254;
+  let out = "Top speed per gear (km/h):\n\n";
+
+  ratios.forEach((gr, i) => {
+    const v = (rpm * Math.PI * tireM) / (30 * gr * fd) * 3.6;
+    out += `Gear ${i + 1}: ${v.toFixed(1)} km/h\n`;
+  });
+
+  document.getElementById("gear-results").innerText = out;
+}
+
+// FUEL RANGE
+function calcFuel() {
+  const l100 = Number(document.getElementById("fuel-l100").value);
+  const tank = Number(document.getElementById("fuel-tank").value);
+  const price = Number(document.getElementById("fuel-price").value);
+
+  if (!l100 || !tank || !price) {
+    document.getElementById("fuel-results").innerText = "Enter fuel economy, tank size, and fuel price.";
+    return;
+  }
+
+  const range = (tank / l100) * 100;
+  const costPer100 = (l100 * price);
+  const fullTankCost = tank * price;
+
+  document.getElementById("fuel-results").innerText = `
+Estimated range per tank: ${range.toFixed(0)} km
+Cost per 100 km: $${costPer100.toFixed(2)}
+Cost per full tank: $${fullTankCost.toFixed(2)}
+`;
+}
+
+// MOD STACK HP
+function calcMods() {
+  const base = Number(document.getElementById("mod-base").value);
+  const intake = Number(document.getElementById("mod-intake").value) || 0;
+  const exhaust = Number(document.getElementById("mod-exhaust").value) || 0;
+  const tune = Number(document.getElementById("mod-tune").value) || 0;
+  const forced = Number(document.getElementById("mod-forced").value) || 0;
+
+  if (!base) {
+    document.getElementById("mod-results").innerText = "Enter base horsepower.";
+    return;
+  }
+
+  const totalGain = intake + exhaust + tune + forced;
+  const newHp = base + totalGain;
+
+  document.getElementById("mod-results").innerText = `
+Base horsepower: ${base.toFixed(0)} hp
+
+Estimated gains:
+  Intake:        +${intake.toFixed(0)} hp
+  Exhaust:       +${exhaust.toFixed(0)} hp
+  Tune:          +${tune.toFixed(0)} hp
+  Forced Induct.:+${forced.toFixed(0)} hp
+
+Total gain:      +${totalGain.toFixed(0)} hp
+Estimated new horsepower: ${newHp.toFixed(0)} hp
+`;
+}
+</script>
+
+</body>
+</html>
