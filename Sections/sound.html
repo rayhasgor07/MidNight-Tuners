@@ -18,16 +18,106 @@
       <a href="./value.html"><i class="fa-solid fa-sack-dollar"></i></a>
       <a href="./calc.html"><i class="fa-solid fa-calculator"></i></a>
     <a href="./sound.html"><i class="fa-solid fa-volume-high"></i></a>
+    <a href="./ai.html"><i class="fa-solid fa-robot"></i></a>
 
     </div>
   </header>
 
   <div class="wrap">
     <div id="sub">
-        
+      <text>Top 10 Best Sounding JDM Cars Of All Time</text>
     </div>
-    </div>
+  </div>
+  <div style=" display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;padding: 40px 20px;max-width: 900px;margin: auto;">
+    <a onclick="playNSX()" id="sub">
+      <h7>Honda NSX NA1</h7>
+      <img style="width:140px; height:100px;" src="https://am-s3-bucket-assets.s3.eu-west-2.amazonaws.com/silverstone/prod/lot_images/large/rec10318-1/rec10318-1_1.jpg?dummy=1773133126"/>
+    </a>
+    <a onclick="playRX7()" id="sub">
+      <h7>Mazda RX-7 FD</h7>
+      <img style="width:140px; height:100px;" src="https://media-r2.carsandbids.com/cdn-cgi/image/width=712,height=468,quality=70/224865fcf1349ec53e0faac653358675b6461a0e/photos/3gY1PMpb-XYzy9_-MAx-(edit).jpg?t=170113078826"/>
+    </a>
+    <a onclick="playR34()" id="sub">
+      <h7>Nissan Skyline R34</h7>
+      <img style="width:140px; height:100px;" src="https://bringatrailer.com/wp-content/uploads/2021/04/1999_nissan_skyline_gt-r_16226515140ce7401fRory-Seerden-DSC_9355-Edit.jpg?fit=940%2C626"/>
+    </a>
+    <a onclick="playSupra()" id="sub">
+      <h7>Toyota Supra MK4</h7>
+      <img style="width:140px; height:100px;" src="https://cdn.motor1.com/images/mgl/PKZQL/s3/1997-toyota-supra-sold-for-176-000-at-auction.jpg"/>
+    </a>
+    <a onclick="playS2000()" id="sub">
+      <h7>Honda S2000</h7>
+      <img style="width:140px; height:100px;" src="https://images.squarespace-cdn.com/content/v1/5caed8960cf57d49530e8c60/796bdec4-d9d9-4984-abff-86c9d67f9380/art-mg-hondas2000+17b.jpg"/>
+    </a>
+    <a onclick="play350Z()" id="sub">
+      <h7>Nissan 350Z HR</h7>
+      <img style="width:140px; height:100px;" src="https://i.redd.it/efuomgt0z0l51.jpg"/>
+    </a>
+    <a onclick="playEvo9()" id="sub">
+      <h7>Mitsubishi Evo 9</h7>
+      <img style="width:140px; height:100px;" src="https://media.carsandbids.com/cdn-cgi/image/width=2080,quality=70/59339d5e07287c702e69307de910cceaa69c1d04/photos/3ojlO54w-WfnNYLdERt-(edit).jpg?t=166301725648"/>
+    </a>
+    <a onclick="playSTI()" id="sub">
+      <h7>Subaru WRX STI</h7>
+      <img style="width:140px; height:100px;" src="https://www.torquenews.com/sites/default/files/styles/news/public/2023_subaru_wrx_sti_fa24_b.jpg?itok=HJkmnxMz"/>
+    </a>
+    <a onclick="playAE86()" id="sub">
+      <h7>Toyota AE86</h7>
+      <img style="width:150px; height:90px;" src="https://japanesenostalgiccar.com/wordpress/wp-content/uploads/2022/06/DeAgostini-Toyota-AE86-Sprinter-Trueno-01-e1654247124389.jpg"/>
+    </a>
+    <a onclick="playRX8()" id="sub">
+      <h7>Mazda RX‑8</h7>
+      <img style="width:140px; height:100px;" src="https://di-uploads-pod14.dealerinspire.com/oceanmazda/uploads/2018/10/Mazda-RX-8-red.jpg"/>
+    </a>
+  </div>
 
   <footer>© 2026 Rayyan Hasan Goraya. All rights reserved.</footer>
 </body>
+<script>
+function playSound(url) {
+  const audio = new Audio(url);
+  audio.play();
+}
+
+// Individual car functions
+function playNSX() {
+  playSound("https://server11.mp3quran.net/sds/001.mp3");
+}
+
+function playRX7() {
+  playSound("https://server11.mp3quran.net/sds/002.mp3");
+}
+
+function playR34() {
+  playSound("https://server11.mp3quran.net/sds/003.mp3");
+}
+
+function playSupra() {
+  playSound("https://server11.mp3quran.net/sds/004.mp3");
+}
+
+function playS2000() {
+  playSound("https://server11.mp3quran.net/sds/005.mp3");
+}
+
+function play350Z() {
+  playSound("https://server11.mp3quran.net/sds/006.mp3");
+}
+
+function playEvo9() {
+  playSound("https://server11.mp3quran.net/sds/007.mp3");
+}
+
+function playSTI() {
+  playSound("https://server11.mp3quran.net/sds/008.mp3");
+}
+
+function playAE86() {
+  playSound("https://server11.mp3quran.net/sds/009.mp3");
+}
+
+function playRX8() {
+  playSound("https://server11.mp3quran.net/sds/010.mp3");
+}
+</script>
 </html>

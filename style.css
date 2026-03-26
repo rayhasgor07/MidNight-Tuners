@@ -4,6 +4,47 @@
     padding:0;
 }
 
+#ai-chat {
+  background: #111;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 40px;
+  color: white;
+  max-width: 600px;
+}
+
+#ai-chat h2 {
+  margin-bottom: 10px;
+}
+
+#chatOutput {
+  max-height: 250px;
+  overflow-y: auto;
+  margin-bottom: 10px;
+  padding-right: 5px;
+}
+
+#ai-chat textarea {
+  width: 100%;
+  height: 80px;
+  background: #222;
+  color: white;
+  border: 1px solid #444;
+  padding: 10px;
+  border-radius: 8px;
+  resize: none;
+}
+
+#ai-chat button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background: #ff0077;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
  #container {
       background: rgba(255, 255, 255, 0.1);
       border: 1px solid rgba(255, 255, 255, 0.2);

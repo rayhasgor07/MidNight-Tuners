@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MidNight Tuners</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" />
+  <link rel="stylesheet" href="../style.css"/>
+</head>
+<body style=" background: radial-gradient(circle at top, #0f2027, #203a43, #2c5364);">
+  <div id="title">
+    <b><text>HOME</text></b>
+  </div>
+  <header>
+    <div id="navigation">
+      <a href="./home.html"><i class="fa-solid fa-house"></i></a>
+      <a href="./feed.html"><i class="fa-solid fa-plus"></i></a>
+      <a href="./learn.html"><i class="fa-solid fa-graduation-cap"></i></a>
+      <a href="./value.html"><i class="fa-solid fa-sack-dollar"></i></a>
+      <a href="./calc.html"><i class="fa-solid fa-calculator"></i></a>
+    <a href="./sound.html"><i class="fa-solid fa-volume-high"></i></a>
+    <a href="./ai.html"><i class="fa-solid fa-robot"></i></a>
+    
+
+    </div>
+  </header>
+
+  <div id="ai-chat">
+  <h2>Ask Torque</h2>
+  <div id="chatOutput"></div>
+  <textarea id="userInput" placeholder="Ask about cars, tuning, or mods..."></textarea>
+  <button onclick="sendMessage()">Send</button>
+</div>
+
+
+  <footer>© 2026 Rayyan Hasan Goraya. All rights reserved.</footer>
+</body>
+<script>async function sendMessage() {
+  const inputEl = document.getElementById("userInput");
+  const outputEl = document.getElementById("chatOutput");
+  const text = inputEl.value.trim();
+
+  if (!text) return;
+
+  // Show user message
+  outputEl.innerHTML += `<p><strong>You:</strong> ${text}</p>`;
+  inputEl.value = "";
+
+  try {
+    const res = await fetch("https://mt-ai-backend-o39v.onrender.com/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: text })
+    });
+
+    const data = await res.json();
+
+    outputEl.innerHTML += `<p><strong>Torque:</strong> ${data.reply}</p>`;
+    outputEl.scrollTop = outputEl.scrollHeight;
+  } catch (err) {
+    console.error(err);
+    outputEl.innerHTML += `<p><strong>Torque:</strong> Error talking to server.</p>`;
+  }
+}</script>
+</html>
