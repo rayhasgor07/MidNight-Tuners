@@ -10,7 +10,7 @@
   border-radius: 10px;
   margin-top: 40px;
   color: white;
-  max-width: 600px;
+  max-width: 100%;
 }
 
 #ai-chat h2 {
