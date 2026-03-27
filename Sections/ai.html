@@ -5,6 +5,7 @@
   <title>MidNight Tuners</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" />
   <link rel="stylesheet" href="../style.css"/>
+  <link href="ai.js" rel="script"/>
 </head>
 <body style=" background: radial-gradient(circle at top, #0f2027, #203a43, #2c5364);">
   <div id="title">
@@ -25,42 +26,15 @@
   </header>
 
   <div id="ai-chat">
-  <h2>Ask Torque</h2>
+  <h2>Ask Torque AI</h2>
   <div id="chatOutput"></div>
   <textarea id="userInput" placeholder="Ask about cars, tuning, or mods..."></textarea>
   <button onclick="sendMessage()">Send</button>
-  <br/>
-  <text>** Torque AI may make mistakes and may take around 1 minute to respond **</text>
+  <br/><text>**May take up to 1 minute to respond**</text>
 </div>
 
 
   <footer>© 2026 Rayyan Hasan Goraya. All rights reserved.</footer>
 </body>
-<script>async function sendMessage() {
-  const inputEl = document.getElementById("userInput");
-  const outputEl = document.getElementById("chatOutput");
-  const text = inputEl.value.trim();
-
-  if (!text) return;
-
-  // Show user message
-  outputEl.innerHTML += `<p><strong>You:</strong> ${text}</p>`;
-  inputEl.value = "";
-
-  try {
-    const res = await fetch("https://mt-ai-backend-o39v.onrender.com/chat", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message: text })
-    });
-
-    const data = await res.json();
-
-    outputEl.innerHTML += `<p><strong>Torque:</strong> ${data.reply}</p>`;
-    outputEl.scrollTop = outputEl.scrollHeight;
-  } catch (err) {
-    console.error(err);
-    outputEl.innerHTML += `<p><strong>Torque:</strong> Error talking to server.</p>`;
-  }
-}</script>
+<script src="ai.js"></script>
 </html>
