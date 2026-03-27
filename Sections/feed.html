@@ -2,76 +2,219 @@
 <html lang="en">
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MidNight Tuners</title>
+  <title>MidNight Tuners — Feed</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" />
   <link rel="stylesheet" href="../style.css"/>
+  <style>
+    .auth-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 20px;
+      background: rgba(0,0,0,0.2);
+      border-bottom: 1px solid var(--glass-border2);
+      font-size: 0.82rem;
+    }
+
+    #who { color: var(--text-muted); font-family: var(--font-mono); font-size: 0.72rem; }
+
+    .feed-wrap {
+      max-width: 640px;
+      margin: 28px auto;
+      padding: 0 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .composer-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      backdrop-filter: blur(16px);
+    }
+
+    .composer-card h3 {
+      color: var(--cyan);
+      font-family: var(--font-display);
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .composer-card h3::before {
+      content: '';
+      display: inline-block;
+      width: 4px;
+      height: 18px;
+      background: var(--cyan);
+      border-radius: 2px;
+      box-shadow: 0 0 8px var(--cyan);
+    }
+
+    .file-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    input[type="file"] {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      background: transparent;
+      border: none;
+      padding: 0;
+    }
+
+    .feed-section h3 {
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .post-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border2);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      backdrop-filter: blur(12px);
+      margin-bottom: 14px;
+      transition: border-color 0.2s;
+    }
+
+    .post-card:hover { border-color: var(--glass-border); }
+
+    .post-header {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .post-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--glass-bg);
+      border: 2px solid var(--glass-border);
+      object-fit: cover;
+      flex: 0 0 38px;
+    }
+
+    .post-author { font-family: var(--font-display); font-size: 0.9rem; font-weight: 600; }
+    .post-time { font-family: var(--font-mono); font-size: 0.65rem; color: var(--text-muted); margin-top: 2px; }
+    .post-text { font-size: 0.88rem; line-height: 1.65; color: var(--text-primary); white-space: pre-wrap; }
+
+    .post-image {
+      width: 100%;
+      border-radius: var(--radius-sm);
+      margin-top: 12px;
+      border: 1px solid var(--glass-border2);
+      max-height: 400px;
+      object-fit: cover;
+    }
+
+    .post-actions {
+      display: flex;
+      gap: 16px;
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px solid var(--glass-border2);
+    }
+
+    .post-action {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: color 0.2s;
+      font-family: var(--font-display);
+      letter-spacing: 0.05em;
+    }
+
+    .post-action:hover { color: var(--cyan); }
+
+    #status { font-family: var(--font-mono); font-size: 0.75rem; }
+
+    .empty-state {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      padding: 40px 20px;
+      font-family: var(--font-mono);
+    }
+  </style>
 </head>
 <body>
-  <div id="title">
-    <b><text>FEED</text></b>
-  </div>
+  <div id="title">FEED</div>
   <header>
     <div id="navigation">
       <a href="./home.html"><i class="fa-solid fa-house"></i></a>
-      <a href="./feed.html"><i class="fa-solid fa-plus"></i></a>
+      <a href="./feed.html" class="active"><i class="fa-solid fa-plus"></i></a>
       <a href="./learn.html"><i class="fa-solid fa-graduation-cap"></i></a>
       <a href="./value.html"><i class="fa-solid fa-sack-dollar"></i></a>
       <a href="./calc.html"><i class="fa-solid fa-calculator"></i></a>
-          <a href="./sound.html"><i class="fa-solid fa-volume-high"></i></a>
-          <a href="./ai.html"><i class="fa-solid fa-robot"></i></a>
-
+      <a href="./sound.html"><i class="fa-solid fa-volume-high"></i></a>
+      <a href="./ai.html"><i class="fa-solid fa-robot"></i></a>
     </div>
   </header>
 
-  <div class="right">
-    <span id="who" class="hint"></span>
-    <button id="signIn" class="btn"><i class="fab fa-google"></i> Sign in</button>
-    <button id="signOut" class="btn gray hide">Sign out</button>
+  <div class="auth-bar">
+    <span id="who"></span>
+    <button id="signIn" class="btn" style="padding:7px 14px; font-size:0.75rem; margin-left:auto;">
+      <i class="fab fa-google"></i> Sign in
+    </button>
+    <button id="signOut" class="btn gray hide" style="padding:7px 14px; font-size:0.75rem; margin-left:auto;">Sign out</button>
   </div>
 
-  <div class="wrap">
+  <div class="feed-wrap">
     <!-- Composer -->
-    <div id="composer" class="card hide">
-      <h3 style="margin:6px 0 12px">Share something</h3>
-      <textarea id="postText" placeholder="Write about your mod, event, or car update..."></textarea>
-      <div class="row" style="align-items:center; margin-top:10px">
+    <div id="composer" class="composer-card hide">
+      <h3>Share Something</h3>
+      <textarea id="postText" placeholder="Write about your mod, event, or car update..." style="min-height:100px;"></textarea>
+      <div class="file-row">
         <input id="file" type="file" accept="image/*"/>
         <span id="fileName" class="hint"></span>
       </div>
-      <div class="row" style="margin-top:10px">
+      <div style="display:flex; gap:12px; margin-top:14px; align-items:center;">
         <button id="publish" class="btn">Post</button>
         <span id="status" class="hint"></span>
       </div>
     </div>
 
     <!-- Feed -->
-    <div class="card">
-      <h3 style="margin:6px 0 12px">Latest posts</h3>
-      <div id="feed"></div>
+    <div class="feed-section">
+      <h3>Latest Posts</h3>
+      <div id="feed"><div class="empty-state">Loading posts...</div></div>
     </div>
   </div>
 
   <footer>© 2026 Rayyan Hasan Goraya. All rights reserved.</footer>
 
-  <!-- Firebase compat SDKs -->
   <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-database-compat.js"></script>
-
   <script>
-    // Firebase config
     const firebaseConfig = {
       apiKey: "AIzaSyAcbR1LKQsd353MQQqB4CaEe17kalaunFg",
       authDomain: "carinfo-e6a46.firebaseapp.com",
       projectId: "carinfo-e6a46",
       databaseURL: "https://carinfo-e6a46-default-rtdb.firebaseio.com"
     };
-
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
     const db = firebase.database();
 
-    // UI refs
     const signInBtn = document.getElementById('signIn');
     const signOutBtn = document.getElementById('signOut');
     const who = document.getElementById('who');
@@ -83,7 +226,6 @@
     const status = document.getElementById('status');
     const feed = document.getElementById('feed');
 
-    // Auth
     const provider = new firebase.auth.GoogleAuthProvider();
     provider.setCustomParameters({ prompt: 'select_account' });
 
@@ -92,7 +234,7 @@
 
     auth.onAuthStateChanged(user => {
       if (user) {
-        who.textContent = `Signed in as ${user.displayName || user.email}`;
+        who.textContent = user.displayName || user.email;
         signInBtn.classList.add('hide');
         signOutBtn.classList.remove('hide');
         composer.classList.remove('hide');
@@ -104,99 +246,92 @@
       }
     });
 
-    fileInput.onchange = () => {
-      fileName.textContent = fileInput.files[0]?.name || '';
-    };
+    fileInput.onchange = () => { fileName.textContent = fileInput.files[0]?.name || ''; };
 
-    // Publish a post (Base64 image → DB)
     publishBtn.onclick = async () => {
       status.textContent = '';
       publishBtn.disabled = true;
-
       try {
         const user = auth.currentUser;
-        if (!user) throw new Error('You must be signed in to post.');
-
+        if (!user) throw new Error('Sign in first.');
         const text = (postText.value || '').trim();
         const file = fileInput.files[0] || null;
-
         if (!text && !file) throw new Error('Write something or pick an image.');
 
         let imageBase64 = '';
         if (file) {
           const reader = new FileReader();
-          imageBase64 = await new Promise((resolve, reject) => {
-            reader.onload = () => resolve(reader.result);
-            reader.onerror = reject;
-            reader.readAsDataURL(file); // converts to base64 string
+          imageBase64 = await new Promise((res, rej) => {
+            reader.onload = () => res(reader.result);
+            reader.onerror = rej;
+            reader.readAsDataURL(file);
           });
         }
 
-        const post = {
+        await db.ref('posts').push({
           uid: user.uid,
           name: user.displayName || user.email,
           photoURL: user.photoURL || '',
-          text,
-          imageBase64,
+          text, imageBase64,
           createdAt: firebase.database.ServerValue.TIMESTAMP
-        };
-
-        await db.ref('posts').push(post);
+        });
 
         postText.value = '';
         fileInput.value = '';
         fileName.textContent = '';
         status.textContent = '✅ Posted!';
-        setTimeout(() => status.textContent = '', 1500);
+        setTimeout(() => status.textContent = '', 2000);
       } catch (e) {
         status.textContent = '⚠️ ' + e.message;
-        console.error(e);
       } finally {
         publishBtn.disabled = false;
       }
     };
 
-    // Render posts
     function renderPost(key, data) {
-      const card = document.createElement('div');
-      card.className = 'card';
-      card.id = `post-${key}`;
-
+      const div = document.createElement('div');
+      div.className = 'post-card';
+      div.id = `post-${key}`;
       const when = data.createdAt ? new Date(data.createdAt).toLocaleString() : '';
-      const imgHtml = data.imageBase64 ? `<img class="img" src="${data.imageBase64}" alt="">` : '';
+      const imgHtml = data.imageBase64 ? `<img class="post-image" src="${data.imageBase64}" alt="">` : '';
+      const avatar = data.photoURL
+        ? `<img class="post-avatar" src="${data.photoURL}" alt="">`
+        : `<div class="post-avatar"></div>`;
 
-      card.innerHTML = `
-        <div class="post">
-          ${data.photoURL ? `<img class="avatar" src="${data.photoURL}" alt="">` : `<div class="avatar"></div>`}
+      div.innerHTML = `
+        <div class="post-header">
+          ${avatar}
           <div>
-            <div style="font-weight:600">${data.name || 'Anonymous'}</div>
-            <div class="meta">${when}</div>
-            <div style="margin-top:8px; white-space:pre-wrap">${(data.text || '').replace(/</g,'&lt;')}</div>
-            ${imgHtml}
+            <div class="post-author">${data.name || 'Anonymous'}</div>
+            <div class="post-time">${when}</div>
           </div>
         </div>
-      `;
-      return card;
+        <div class="post-text">${(data.text || '').replace(/</g,'&lt;')}</div>
+        ${imgHtml}
+        <div class="post-actions">
+          <div class="post-action"><i class="fa-regular fa-heart"></i> Like</div>
+          <div class="post-action"><i class="fa-regular fa-comment"></i> Reply</div>
+        </div>`;
+      return div;
     }
 
+    let firstLoad = true;
     const postsQuery = db.ref('posts').orderByChild('createdAt').limitToLast(100);
 
     postsQuery.on('child_added', snap => {
-      const key = snap.key, data = snap.val();
-      const node = renderPost(key, data);
+      if (firstLoad) feed.innerHTML = '';
+      firstLoad = false;
+      const node = renderPost(snap.key, snap.val());
       feed.insertBefore(node, feed.firstChild);
     });
 
     postsQuery.on('child_changed', snap => {
-      const key = snap.key, data = snap.val();
-      const old = document.getElementById(`post-${key}`);
-      if (old) old.replaceWith(renderPost(key, data));
+      const old = document.getElementById(`post-${snap.key}`);
+      if (old) old.replaceWith(renderPost(snap.key, snap.val()));
     });
 
     postsQuery.on('child_removed', snap => {
-      const key = snap.key;
-      const old = document.getElementById(`post-${key}`);
-      if (old) old.remove();
+      document.getElementById(`post-${snap.key}`)?.remove();
     });
   </script>
 </body>

@@ -4,37 +4,198 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>MidNight Tuners</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" />
-   <link rel="stylesheet" href="./style.css"/>
+  <link rel="stylesheet" href="./style.css"/>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Animated background orbs */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: 0;
+      animation: orbFloat 8s ease-in-out infinite alternate;
+    }
+    .orb-1 { width: 400px; height: 400px; background: rgba(0,229,255,0.08); top: -100px; left: -100px; animation-delay: 0s; }
+    .orb-2 { width: 300px; height: 300px; background: rgba(255,45,111,0.06); bottom: -80px; right: -80px; animation-delay: 3s; }
+    .orb-3 { width: 200px; height: 200px; background: rgba(255,200,69,0.05); top: 40%; left: 60%; animation-delay: 1.5s; }
+
+    @keyframes orbFloat {
+      from { transform: translate(0, 0) scale(1); }
+      to   { transform: translate(30px, 20px) scale(1.08); }
+    }
+
+    .site-header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px 20px 0;
+      z-index: 1;
+    }
+
+    .logo-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .logo-icon {
+      font-size: 1.4rem;
+      color: var(--cyan);
+      filter: drop-shadow(0 0 8px var(--cyan));
+      animation: iconPulse 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes iconPulse {
+      from { filter: drop-shadow(0 0 4px var(--cyan)); }
+      to   { filter: drop-shadow(0 0 20px var(--cyan)); }
+    }
+
+    .logo-text {
+      font-family: var(--font-display);
+      font-size: clamp(1.2rem, 4vw, 2rem);
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+    }
+
+    .logo-text span { color: var(--cyan); }
+
+    .logo-sub {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    /* Speed lines decoration */
+    .speed-lines {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 500px;
+      height: 500px;
+      opacity: 0.04;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .speed-lines::before,
+    .speed-lines::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      border-radius: 50%;
+      border: 1px solid var(--cyan);
+      animation: ripple 3s ease-out infinite;
+    }
+
+    .speed-lines::before {
+      width: 300px; height: 300px;
+      margin: -150px 0 0 -150px;
+    }
+
+    .speed-lines::after {
+      width: 500px; height: 500px;
+      margin: -250px 0 0 -250px;
+      animation-delay: 1.5s;
+    }
+
+    @keyframes ripple {
+      0%   { transform: scale(0.8); opacity: 0.8; }
+      100% { transform: scale(1.4); opacity: 0; }
+    }
+
+    #container {
+      position: relative;
+      z-index: 2;
+    }
+
+    .welcome-tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      color: var(--cyan);
+      text-transform: uppercase;
+      border: 1px solid var(--glass-border);
+      border-radius: 99px;
+      padding: 4px 14px;
+      margin-bottom: 20px;
+      background: var(--cyan-dim);
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 18px 0;
+      color: var(--text-muted);
+      font-size: 0.7rem;
+    }
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--glass-border2);
+    }
+  </style>
 </head>
+<body>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
 
-<body style="font-family: 'Poppins', sans-serif; background: radial-gradient(circle at top, #0f2027, #203a43, #2c5364);
-color: #fff; height: 100vh; display: flex; flex-direction: column; align-items: center;justify-content: center;overflow: hidden;">
-
-  <header style="position: absolute; top: 20px; text-align: center; display: flex; justify-content: center; align-items: center; width: 100%;">
-    <h1>MidNight Tuners</h1>
+  <header class="site-header">
+    <div class="logo-wrap">
+      <i class="fa-solid fa-car-side logo-icon"></i>
+      <div class="logo-text">Mid<span>Night</span> Tuners</div>
+      <div class="logo-sub">Est. 2026 · Waterloo</div>
+    </div>
   </header>
 
+  <div class="speed-lines"></div>
+
   <div id="container">
-    <h3 style="margin-bottom: 25px;font-weight: 600;color: #00ffff;letter-spacing: 1px;">WELCOME BACK</h3>
-    <a id="googleBtn" 
-      style="display: block;width: 100%;padding: 12px;margin: 10px 0;border: none;border-radius: 8px;font-size: 16px;font-weight: 600;transition: all 0.25s ease;cursor: pointer;text-decoration: none;color: white;">
-      <i class="fab fa-google"></i>Sign in with Google
-    </a>
-    <a id="signOutBtn" 
-      style="display:none; background-color:#092f36; color:white; padding:12px; border:none; border-radius:5px; font-size:16px; margin-top:10px; text-align: center;">Sign Out
-    </a>
-     <a id="start" href="./Sections/home.html"
-      style="text-decoration: none;display:none; background-color:cadetblue; color:white; padding:12px; border:none; border-radius:5px; font-size:16px; margin-top:10px; text-align: center;">🚗 ENTER GARAGE 
+    <div class="welcome-tag">⚡ GARAGE ACCESS</div>
+    <h2 style="color:var(--text-primary); margin-bottom:6px;">Welcome Back</h2>
+    <p style="color:var(--text-muted); font-size:0.82rem; margin-bottom:20px;">Sign in to access your garage, feed, and tools.</p>
+
+    <a id="googleBtn">
+      <i class="fab fa-google"></i> &nbsp;Sign in with Google
     </a>
 
-     <p id="status" style="text-align:center; margin-top:20px; color:darkblue;"></p>
-    </div>
+    <div class="divider">or</div>
 
+    <a id="signOutBtn">Sign Out</a>
+    <a id="start" href="./Sections/home.html">🚗 &nbsp;ENTER GARAGE</a>
 
-  <!-- ✅ Correct Firebase SDKs (Compat Version) -->
+    <p id="status"></p>
+  </div>
+
+  <footer style="position:absolute; bottom:0; width:100%; background:transparent; border-top:none; margin-top:0;">
+    © 2026 Rayyan Hasan Goraya. All rights reserved.
+  </footer>
+
   <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
-
   <script>
     const firebaseConfig = {
       apiKey: "AIzaSyAcbR1LKQsd353MQQqB4CaEe17kalaunFg",
@@ -43,49 +204,28 @@ color: #fff; height: 100vh; display: flex; flex-direction: column; align-items: 
       storageBucket: "carinfo-e6a46.appspot.com",
       messagingSenderId: "631525494281",
       appId: "1:631525494281:web:a90b16b193c7b2eb4d72d8",
-      measurementId: "G-4EL90JVDH9"
     };
-    // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
     const provider = new firebase.auth.GoogleAuthProvider();
-
     const googleBtn = document.getElementById("googleBtn");
     const signOutBtn = document.getElementById("signOutBtn");
-    const startBtn = document.getElementById("start")
+    const startBtn = document.getElementById("start");
     const statusText = document.getElementById("status");
 
-    // Google Sign-In
     googleBtn.addEventListener("click", () => {
-      auth.signInWithPopup(provider)
-        .then((result) => {
-          const user = result.user;
-          statusText.textContent = "🚗 Welcome, " + user.displayName + "!";
-          googleBtn.style.display = "none";
-          signOutBtn.style.display = "block";
-          startBtn.style.display = "block";
-          console.log("User info:", user);
-        })
-        .catch((error) => {
-          statusText.textContent = "⚠️ " + error.message;
-          console.error(error);
-        });
+      auth.signInWithPopup(provider).then(r => {
+        statusText.textContent = "✅ Welcome, " + r.user.displayName;
+      }).catch(e => { statusText.textContent = "⚠️ " + e.message; });
     });
 
-    // Sign Out
     signOutBtn.addEventListener("click", () => {
-      auth.signOut().then(() => {
-        statusText.textContent = "👋 Signed out successfully!";
-        googleBtn.style.display = "block";
-        signOutBtn.style.display = "none";
-        startBtn.style.display = "none";
-      });
+      auth.signOut().then(() => { statusText.textContent = "👋 Signed out."; });
     });
 
-    // Persist login
-    auth.onAuthStateChanged((user) => {
+    auth.onAuthStateChanged(user => {
       if (user) {
-        statusText.textContent = "✅ Signed in as " + user.displayName;
+        statusText.textContent = "✅ " + user.displayName;
         googleBtn.style.display = "none";
         signOutBtn.style.display = "block";
         startBtn.style.display = "block";
@@ -97,6 +237,5 @@ color: #fff; height: 100vh; display: flex; flex-direction: column; align-items: 
       }
     });
   </script>
-
 </body>
 </html>

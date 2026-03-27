@@ -2,14 +2,142 @@
 <html lang="en">
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MidNight Tuners</title>
+  <title>MidNight Tuners — Sound</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" />
   <link rel="stylesheet" href="../style.css"/>
+  <style>
+    .page-header {
+      text-align: center;
+      padding: 36px 20px 20px;
+    }
+    .page-header h1 span { color: var(--pink); }
+    .page-header p { color: var(--text-muted); font-size: 0.85rem; margin-top: 8px; }
+
+    .sound-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 16px;
+      padding: 20px;
+      max-width: 860px;
+      margin: 0 auto 40px;
+    }
+
+    .sound-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-md);
+      padding: 18px 14px 16px;
+      text-align: center;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      backdrop-filter: blur(12px);
+      transition: all 0.25s ease;
+      position: relative;
+      overflow: hidden;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    .sound-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 80%, rgba(255,45,111,0.1) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .sound-card:hover {
+      border-color: var(--pink);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(255,45,111,0.15), 0 0 0 1px rgba(255,45,111,0.2);
+    }
+
+    .sound-card:hover::after { opacity: 1; }
+
+    .sound-card.playing {
+      border-color: var(--pink);
+      box-shadow: 0 0 30px rgba(255,45,111,0.3);
+    }
+
+    .sound-card img {
+      width: 110px;
+      height: 76px;
+      object-fit: cover;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--glass-border);
+      transition: filter 0.25s;
+    }
+
+    .sound-card:hover img { filter: brightness(1.1); }
+
+    .sound-card .car-name {
+      font-family: var(--font-display);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      line-height: 1.3;
+    }
+
+    .play-icon {
+      width: 32px;
+      height: 32px;
+      background: rgba(255,45,111,0.15);
+      border: 1px solid rgba(255,45,111,0.4);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      color: var(--pink);
+      transition: all 0.2s;
+    }
+
+    .sound-card:hover .play-icon {
+      background: rgba(255,45,111,0.28);
+      box-shadow: 0 0 12px rgba(255,45,111,0.4);
+    }
+
+    .sound-card.playing .play-icon {
+      background: var(--pink);
+      color: white;
+      box-shadow: 0 0 16px rgba(255,45,111,0.6);
+    }
+
+    /* Equalizer bars when playing */
+    .eq-bars {
+      display: flex;
+      gap: 3px;
+      align-items: flex-end;
+      height: 16px;
+    }
+    .eq-bars span {
+      width: 3px;
+      background: var(--pink);
+      border-radius: 2px;
+      animation: eqBounce 0.5s ease-in-out infinite alternate;
+    }
+    .eq-bars span:nth-child(1) { height: 8px; animation-delay: 0s; }
+    .eq-bars span:nth-child(2) { height: 14px; animation-delay: 0.1s; }
+    .eq-bars span:nth-child(3) { height: 10px; animation-delay: 0.2s; }
+    .eq-bars span:nth-child(4) { height: 16px; animation-delay: 0.15s; }
+    .eq-bars span:nth-child(5) { height: 6px; animation-delay: 0.05s; }
+    @keyframes eqBounce {
+      from { transform: scaleY(0.4); }
+      to   { transform: scaleY(1); }
+    }
+    .eq-bars { display: none; }
+    .sound-card.playing .eq-bars { display: flex; }
+    .sound-card.playing .play-icon i { display: none; }
+  </style>
 </head>
-<body style=" background: radial-gradient(circle at top, #0f2027, #203a43, #2c5364);">
-  <div id="title">
-    <b><text>Sound</text></b>
-  </div>
+<body>
+  <div id="title">SOUND</div>
   <header>
     <div id="navigation">
       <a href="./home.html"><i class="fa-solid fa-house"></i></a>
@@ -17,107 +145,123 @@
       <a href="./learn.html"><i class="fa-solid fa-graduation-cap"></i></a>
       <a href="./value.html"><i class="fa-solid fa-sack-dollar"></i></a>
       <a href="./calc.html"><i class="fa-solid fa-calculator"></i></a>
-    <a href="./sound.html"><i class="fa-solid fa-volume-high"></i></a>
-    <a href="./ai.html"><i class="fa-solid fa-robot"></i></a>
-
+      <a href="./sound.html" class="active"><i class="fa-solid fa-volume-high"></i></a>
+      <a href="./ai.html"><i class="fa-solid fa-robot"></i></a>
     </div>
   </header>
 
-  <div class="wrap">
-    <div id="sub">
-      <text>Top 10 Best Sounding JDM Cars Of All Time</text>
-    </div>
+  <div class="page-header">
+    <h1>Top 10 <span>Sounds</span></h1>
+    <p>Best sounding JDM cars of all time. Tap to hear them roar.</p>
   </div>
-  <div style=" display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;padding: 40px 20px;max-width: 900px;margin: auto;">
-    <a onclick="playNSX()" id="sub">
-      <h7>Honda NSX NA1</h7>
-      <img style="width:140px; height:100px;" src="https://am-s3-bucket-assets.s3.eu-west-2.amazonaws.com/silverstone/prod/lot_images/large/rec10318-1/rec10318-1_1.jpg?dummy=1773133126"/>
-    </a>
-    <a onclick="playRX7()" id="sub">
-      <h7>Mazda RX-7 FD</h7>
-      <img style="width:140px; height:100px;" src="https://media-r2.carsandbids.com/cdn-cgi/image/width=712,height=468,quality=70/224865fcf1349ec53e0faac653358675b6461a0e/photos/3gY1PMpb-XYzy9_-MAx-(edit).jpg?t=170113078826"/>
-    </a>
-    <a onclick="playR34()" id="sub">
-      <h7>Nissan Skyline R34</h7>
-      <img style="width:140px; height:100px;" src="https://bringatrailer.com/wp-content/uploads/2021/04/1999_nissan_skyline_gt-r_16226515140ce7401fRory-Seerden-DSC_9355-Edit.jpg?fit=940%2C626"/>
-    </a>
-    <a onclick="playSupra()" id="sub">
-      <h7>Toyota Supra MK4</h7>
-      <img style="width:140px; height:100px;" src="https://cdn.motor1.com/images/mgl/PKZQL/s3/1997-toyota-supra-sold-for-176-000-at-auction.jpg"/>
-    </a>
-    <a onclick="playS2000()" id="sub">
-      <h7>Honda S2000</h7>
-      <img style="width:140px; height:100px;" src="https://images.squarespace-cdn.com/content/v1/5caed8960cf57d49530e8c60/796bdec4-d9d9-4984-abff-86c9d67f9380/art-mg-hondas2000+17b.jpg"/>
-    </a>
-    <a onclick="play350Z()" id="sub">
-      <h7>Nissan 350Z HR</h7>
-      <img style="width:140px; height:100px;" src="https://i.redd.it/efuomgt0z0l51.jpg"/>
-    </a>
-    <a onclick="playEvo9()" id="sub">
-      <h7>Mitsubishi Evo 9</h7>
-      <img style="width:140px; height:100px;" src="https://media.carsandbids.com/cdn-cgi/image/width=2080,quality=70/59339d5e07287c702e69307de910cceaa69c1d04/photos/3ojlO54w-WfnNYLdERt-(edit).jpg?t=166301725648"/>
-    </a>
-    <a onclick="playSTI()" id="sub">
-      <h7>Subaru WRX STI</h7>
-      <img style="width:140px; height:100px;" src="https://www.torquenews.com/sites/default/files/styles/news/public/2023_subaru_wrx_sti_fa24_b.jpg?itok=HJkmnxMz"/>
-    </a>
-    <a onclick="playAE86()" id="sub">
-      <h7>Toyota AE86</h7>
-      <img style="width:150px; height:90px;" src="https://japanesenostalgiccar.com/wordpress/wp-content/uploads/2022/06/DeAgostini-Toyota-AE86-Sprinter-Trueno-01-e1654247124389.jpg"/>
-    </a>
-    <a onclick="playRX8()" id="sub">
-      <h7>Mazda RX‑8</h7>
-      <img style="width:140px; height:100px;" src="https://di-uploads-pod14.dealerinspire.com/oceanmazda/uploads/2018/10/Mazda-RX-8-red.jpg"/>
-    </a>
+
+  <div class="sound-grid">
+    <div class="sound-card" onclick="playSound(this, 'https://server11.mp3quran.net/sds/001.mp3')">
+      <img src="https://am-s3-bucket-assets.s3.eu-west-2.amazonaws.com/silverstone/prod/lot_images/large/rec10318-1/rec10318-1_1.jpg?dummy=1773133126" alt="Honda NSX"/>
+      <div class="car-name">Honda NSX NA1</div>
+      <div class="play-icon">
+        <i class="fa-solid fa-play"></i>
+        <div class="eq-bars"><span></span><span></span><span></span><span></span><span></span></div>
+      </div>
+    </div>
+    <div class="sound-card" onclick="playSound(this, 'https://server11.mp3quran.net/sds/002.mp3')">
+      <img src="https://media-r2.carsandbids.com/cdn-cgi/image/width=712,height=468,quality=70/224865fcf1349ec53e0faac653358675b6461a0e/photos/3gY1PMpb-XYzy9_-MAx-(edit).jpg?t=170113078826" alt="Mazda RX-7"/>
+      <div class="car-name">Mazda RX-7 FD</div>
+      <div class="play-icon">
+        <i class="fa-solid fa-play"></i>
+        <div class="eq-bars"><span></span><span></span><span></span><span></span><span></span></div>
+      </div>
+    </div>
+    <div class="sound-card" onclick="playSound(this, 'https://server11.mp3quran.net/sds/003.mp3')">
+      <img src="https://bringatrailer.com/wp-content/uploads/2021/04/1999_nissan_skyline_gt-r_16226515140ce7401fRory-Seerden-DSC_9355-Edit.jpg?fit=940%2C626" alt="Nissan R34"/>
+      <div class="car-name">Nissan Skyline R34</div>
+      <div class="play-icon">
+        <i class="fa-solid fa-play"></i>
+        <div class="eq-bars"><span></span><span></span><span></span><span></span><span></span></div>
+      </div>
+    </div>
+    <div class="sound-card" onclick="playSound(this, 'https://server11.mp3quran.net/sds/004.mp3')">
+      <img src="https://cdn.motor1.com/images/mgl/PKZQL/s3/1997-toyota-supra-sold-for-176-000-at-auction.jpg" alt="Toyota Supra"/>
+      <div class="car-name">Toyota Supra MK4</div>
+      <div class="play-icon">
+        <i class="fa-solid fa-play"></i>
+        <div class="eq-bars"><span></span><span></span><span></span><span></span><span></span></div>
+      </div>
+    </div>
+    <div class="sound-card" onclick="playSound(this, 'https://server11.mp3quran.net/sds/005.mp3')">
+      <img src="https://images.squarespace-cdn.com/content/v1/5caed8960cf57d49530e8c60/796bdec4-d9d9-4984-abff-86c9d67f9380/art-mg-hondas2000+17b.jpg" alt="Honda S2000"/>
+      <div class="car-name">Honda S2000</div>
+      <div class="play-icon">
+        <i class="fa-solid fa-play"></i>
+        <div class="eq-bars"><span></span><span></span><span></span><span></span><span></span></div>
+      </div>
+    </div>
+    <div class="sound-card" onclick="playSound(this, 'https://server11.mp3quran.net/sds/006.mp3')">
+      <img src="https://i.redd.it/efuomgt0z0l51.jpg" alt="Nissan 350Z"/>
+      <div class="car-name">Nissan 350Z HR</div>
+      <div class="play-icon">
+        <i class="fa-solid fa-play"></i>
+        <div class="eq-bars"><span></span><span></span><span></span><span></span><span></span></div>
+      </div>
+    </div>
+    <div class="sound-card" onclick="playSound(this, 'https://server11.mp3quran.net/sds/007.mp3')">
+      <img src="https://media.carsandbids.com/cdn-cgi/image/width=2080,quality=70/59339d5e07287c702e69307de910cceaa69c1d04/photos/3ojlO54w-WfnNYLdERt-(edit).jpg?t=166301725648" alt="Evo 9"/>
+      <div class="car-name">Mitsubishi Evo 9</div>
+      <div class="play-icon">
+        <i class="fa-solid fa-play"></i>
+        <div class="eq-bars"><span></span><span></span><span></span><span></span><span></span></div>
+      </div>
+    </div>
+    <div class="sound-card" onclick="playSound(this, 'https://server11.mp3quran.net/sds/008.mp3')">
+      <img src="https://www.torquenews.com/sites/default/files/styles/news/public/2023_subaru_wrx_sti_fa24_b.jpg?itok=HJkmnxMz" alt="Subaru STI"/>
+      <div class="car-name">Subaru WRX STI</div>
+      <div class="play-icon">
+        <i class="fa-solid fa-play"></i>
+        <div class="eq-bars"><span></span><span></span><span></span><span></span><span></span></div>
+      </div>
+    </div>
+    <div class="sound-card" onclick="playSound(this, 'https://server11.mp3quran.net/sds/009.mp3')">
+      <img src="https://japanesenostalgiccar.com/wordpress/wp-content/uploads/2022/06/DeAgostini-Toyota-AE86-Sprinter-Trueno-01-e1654247124389.jpg" alt="Toyota AE86"/>
+      <div class="car-name">Toyota AE86</div>
+      <div class="play-icon">
+        <i class="fa-solid fa-play"></i>
+        <div class="eq-bars"><span></span><span></span><span></span><span></span><span></span></div>
+      </div>
+    </div>
+    <div class="sound-card" onclick="playSound(this, 'https://server11.mp3quran.net/sds/010.mp3')">
+      <img src="https://di-uploads-pod14.dealerinspire.com/oceanmazda/uploads/2018/10/Mazda-RX-8-red.jpg" alt="Mazda RX-8"/>
+      <div class="car-name">Mazda RX‑8</div>
+      <div class="play-icon">
+        <i class="fa-solid fa-play"></i>
+        <div class="eq-bars"><span></span><span></span><span></span><span></span><span></span></div>
+      </div>
+    </div>
   </div>
 
   <footer>© 2026 Rayyan Hasan Goraya. All rights reserved.</footer>
+
+  <script>
+    let currentAudio = null;
+    let currentCard = null;
+
+    function playSound(card, url) {
+      if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+        if (currentCard) currentCard.classList.remove('playing');
+        if (currentCard === card) { currentCard = null; currentAudio = null; return; }
+      }
+      const audio = new Audio(url);
+      audio.play();
+      card.classList.add('playing');
+      currentAudio = audio;
+      currentCard = card;
+      audio.addEventListener('ended', () => {
+        card.classList.remove('playing');
+        currentAudio = null;
+        currentCard = null;
+      });
+    }
+  </script>
 </body>
-<script>
-function playSound(url) {
-  const audio = new Audio(url);
-  audio.play();
-}
-
-// Individual car functions
-function playNSX() {
-  playSound("https://server11.mp3quran.net/sds/001.mp3");
-}
-
-function playRX7() {
-  playSound("https://server11.mp3quran.net/sds/002.mp3");
-}
-
-function playR34() {
-  playSound("https://server11.mp3quran.net/sds/003.mp3");
-}
-
-function playSupra() {
-  playSound("https://server11.mp3quran.net/sds/004.mp3");
-}
-
-function playS2000() {
-  playSound("https://server11.mp3quran.net/sds/005.mp3");
-}
-
-function play350Z() {
-  playSound("https://server11.mp3quran.net/sds/006.mp3");
-}
-
-function playEvo9() {
-  playSound("https://server11.mp3quran.net/sds/007.mp3");
-}
-
-function playSTI() {
-  playSound("https://server11.mp3quran.net/sds/008.mp3");
-}
-
-function playAE86() {
-  playSound("https://server11.mp3quran.net/sds/009.mp3");
-}
-
-function playRX8() {
-  playSound("https://server11.mp3quran.net/sds/010.mp3");
-}
-</script>
 </html>

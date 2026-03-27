@@ -2,49 +2,162 @@
 <html lang="en">
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MidNight Tuners</title>
+  <title>MidNight Tuners — Home</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" />
   <link rel="stylesheet" href="../style.css"/>
+  <style>
+    .hero {
+      text-align: center;
+      padding: 48px 20px 32px;
+    }
+    .hero-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      color: var(--pink);
+      border: 1px solid rgba(255,45,111,0.3);
+      border-radius: 99px;
+      padding: 4px 16px;
+      background: rgba(255,45,111,0.08);
+      margin-bottom: 16px;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: 0.08em;
+      color: var(--text-primary);
+    }
+    .hero h1 span { color: var(--cyan); }
+    .hero p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      max-width: 480px;
+      margin: 16px auto 0;
+      line-height: 1.7;
+      font-style: italic;
+    }
+
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 28px;
+    }
+    .stat-box {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-md);
+      padding: 18px 12px;
+      text-align: center;
+      backdrop-filter: blur(12px);
+    }
+    .stat-box .num {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--cyan);
+    }
+    .stat-box .lbl {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    .story-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+    .story-card img {
+      width: min(260px, 80%);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 0 30px rgba(255,45,111,0.2);
+    }
+    .story-card h2 {
+      color: var(--cyan);
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .story-card p {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      line-height: 1.75;
+      text-align: center;
+    }
+    .story-card a.read-more {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--pink);
+      border: 1px solid rgba(255,45,111,0.4);
+      border-radius: var(--radius-sm);
+      padding: 9px 20px;
+      background: rgba(255,45,111,0.08);
+      transition: all 0.2s;
+      margin-top: 4px;
+    }
+    .story-card a.read-more:hover {
+      background: rgba(255,45,111,0.2);
+      box-shadow: 0 0 16px rgba(255,45,111,0.4);
+      color: #fff;
+    }
+  </style>
 </head>
-<body style=" background: radial-gradient(circle at top, #0f2027, #203a43, #2c5364);">
-  <div id="title">
-    <b><text>HOME</text></b>
-  </div>
+<body>
+  <div id="title">HOME</div>
   <header>
     <div id="navigation">
-      <a href="./home.html"><i class="fa-solid fa-house"></i></a>
+      <a href="./home.html" class="active"><i class="fa-solid fa-house"></i></a>
       <a href="./feed.html"><i class="fa-solid fa-plus"></i></a>
       <a href="./learn.html"><i class="fa-solid fa-graduation-cap"></i></a>
       <a href="./value.html"><i class="fa-solid fa-sack-dollar"></i></a>
       <a href="./calc.html"><i class="fa-solid fa-calculator"></i></a>
-          <a href="./sound.html"><i class="fa-solid fa-volume-high"></i></a>
-          <a href="./ai.html"><i class="fa-solid fa-robot"></i></a>
-
+      <a href="./sound.html"><i class="fa-solid fa-volume-high"></i></a>
+      <a href="./ai.html"><i class="fa-solid fa-robot"></i></a>
     </div>
   </header>
 
-  <div class="wrap">
-     <div id="sub">
-      <p style="text-align:center; margin: 15px 0; font-style: italic;">
-        Our goal at <b>MidNight Tuners</b> is to bring that same passion and precision 
-        from the golden era of street racing into a modern digital space — where car enthusiasts 
-        can learn, share, and tune together.
-      </p>
+  <div class="hero">
+    <div class="hero-badge">🏁 JDM CULTURE · STREET RACING · TUNING</div>
+    <h1>Mid<span>Night</span><br>Tuners</h1>
+    <p>Our goal is to bring that same passion and precision from the golden era of street racing into a modern digital space — where car enthusiasts can learn, share, and tune together.</p>
+
+    <div class="stat-row">
+      <div class="stat-box">
+        <div class="num">300<span style="font-size:1rem;color:var(--text-muted)">+</span></div>
+        <div class="lbl">KM/H</div>
+      </div>
+      <div class="stat-box">
+        <div class="num">87</div>
+        <div class="lbl">Founded</div>
+      </div>
+      <div class="stat-box">
+        <div class="num">∞</div>
+        <div class="lbl">Passion</div>
+      </div>
     </div>
-    <div id="sub">
-      <h3 style="text-align: center;margin:6px 0 12px">Inspiration behind the name "MidNight Tuners"</h3>
-      <img class="photo" style="align-self: center;align-items: center;width: 250px; height:150px; margin:20px" src="../Photos/MidNight.png"/>
-      <br/>
-      <h8>The legendary street racing club known as the “Mid Night Club” 
-        is essential knowledge for any fan of street racing. Operating from 1987 
-        until 1999, the Mid Night Club was one of the most notorious and highly 
-        respected street racing clubs. Racing at speeds up to 300kmh (190mph) in 
-        Italian exotics such as the Lamborghini Countach or the Ferrari Testarossa,
-        and Japenese cars such as the Nissan 300ZX, Nissan GTRs, the Toyota 
-        Supra and the Mazda RX7.</h8>
-        <br/>
-        <br/>
-        <a style="background-color: darkcyan;" href="https://thebackroads.co.uk/2019/02/06/the-mid-night-club-japans-most-infamous-street-racers/">FOR MORE INFO</a>
+  </div>
+
+  <div class="wrap">
+    <div class="card story-card">
+      <h2>The Mid Night Club</h2>
+      <img src="../Photos/MidNight.png" alt="Mid Night Club"/>
+      <p>The legendary street racing club known as the "Mid Night Club" operated from <strong style="color:var(--text-primary)">1987 until 1999</strong>, becoming one of the most notorious and respected street racing clubs in history. Racing at speeds up to 300 km/h in Italian exotics — the Lamborghini Countach, Ferrari Testarossa — and Japanese icons like the Nissan 300ZX, GTR, Toyota Supra, and Mazda RX7.</p>
+      <a class="read-more" href="https://thebackroads.co.uk/2019/02/06/the-mid-night-club-japans-most-infamous-street-racers/" target="_blank">
+        <i class="fa-solid fa-arrow-up-right-from-square"></i> Full Story
+      </a>
     </div>
   </div>
 
